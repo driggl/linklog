@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+if [[ -a /tmp/puma.pid ]]; then
+  rm /tmp/puma.pid
+fi
+
+if [[ $RAILS_ENV == "production" ]]; then
+  rake db:migrate
+  mkdir -p /usr/share/nginx/html/api
+  cp -R public/* /usr/share/nginx/html/api
+fi
+
+rails server -b 0.0.0.0 -P /tmp/puma.pid
