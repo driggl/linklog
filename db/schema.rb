@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_104322) do
+ActiveRecord::Schema.define(version: 2020_05_15_111401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "login"
+    t.string "name"
+    t.string "email"
+    t.string "url"
+    t.string "avatar_url"
+    t.string "provider"
+    t.jsonb "auth_data"
+  end
 
 end
