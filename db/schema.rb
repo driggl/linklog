@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_115608) do
     t.string "url"
     t.string "avatar_url"
     t.string "provider"
-    t.jsonb "auth_data"
+    t.jsonb "auth_data", default: {}, null: false
   end
 
   add_foreign_key "access_tokens", "users"

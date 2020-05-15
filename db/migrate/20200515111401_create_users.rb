@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :url
       t.string :avatar_url
       t.string :provider
-      t.jsonb :auth_data
+      t.jsonb :auth_data, null: false, default: {}
     end
   end
 end
