@@ -13,10 +13,7 @@ class User < ApplicationRecord
   end
 
   def password=(new_password)
-    @password = new_password
-    return if new_password.blank?
-
-    @password = Password.create(new_password)
+    @password = new_password.present? ? Password.create(new_password) : nil
     auth_data['encrypted_password'] = @password
   end
 end
