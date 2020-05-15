@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :password, presence: true, if: -> { provider == 'standard' }
 
   has_one :access_token, dependent: :destroy
+  has_many :articles, dependent: :destroy
 
   def password
     return if auth_data['encrypted_password'].blank?
