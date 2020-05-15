@@ -18,7 +18,7 @@ Rails/SkipsModelValidations:
   Enabled: false
 
 # Check with yard instead.
-  Style/Documentation:
+Style/Documentation:
   Enabled: false
 
 Style/DoubleNegation:
