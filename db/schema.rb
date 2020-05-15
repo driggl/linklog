@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_111401) do
+ActiveRecord::Schema.define(version: 2020_05_15_115608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "token"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "login"
@@ -27,4 +35,5 @@ ActiveRecord::Schema.define(version: 2020_05_15_111401) do
     t.jsonb "auth_data"
   end
 
+  add_foreign_key "access_tokens", "users"
 end
