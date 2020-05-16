@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'tokens#destroy'
 
   post 'sign_up', to: 'registrations#create'
+
+  resources :articles
 end
