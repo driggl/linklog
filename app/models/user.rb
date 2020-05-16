@@ -20,4 +20,8 @@ class User < ApplicationRecord
     @password = new_password.present? ? Password.create(new_password) : nil
     auth_data['encrypted_password'] = @password
   end
+
+  def encrypted_password
+    auth_data['encrypted_password']
+  end
 end
