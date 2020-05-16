@@ -25,6 +25,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include JsonApiHelpers, type: :controller
 
+  config.include_context 'json errors', type: :controller
+
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
