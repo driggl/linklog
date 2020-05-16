@@ -28,6 +28,7 @@ services:
       - "memcached"
   specs:
     image: wdf/api:test
+    command: tail -f /dev/null
     env_file:
       - .env_test
     volumes:
