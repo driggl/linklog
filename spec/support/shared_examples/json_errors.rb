@@ -65,4 +65,25 @@ RSpec.shared_context 'json errors' do
       expect(json['errors']).to include(authorization_error)
     end
   end
+
+  shared_examples_for 'not_found_requests' do
+    let(:not_found_error) do
+      {
+        'status' => 404,
+        'source' => { 'pointer' => '/request/url/:id' },
+        'title' => 'Record not Found',
+        'detail' => 'We could not find the object you were looking for.'
+      }
+    end
+
+    it 'should return 404 status code' do
+      subject
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it 'should return proper error json' do
+      subject
+      expect(json['errors']).to include(not_found_error)
+    end
+  end
 end
