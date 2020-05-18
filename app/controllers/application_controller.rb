@@ -15,6 +15,7 @@ class ApplicationController < ActionController::API
 
   include Authorizer
   include Authenticator
+  include Pagination
 
   private
 
