@@ -9,7 +9,7 @@
   ],
   "routes": [
     {
-      "src": "https://linklog-ui.driggl.now.sh/(.*)",
+      "src": "https://wdf.driggl.now.sh/(.*)",
       "status": 308,
       "headers": {
         "Location": "https://webdevflow.com"
@@ -17,6 +17,6 @@
     }
   ],
   "env": {
-    "API_URL": "@api-url"
+    "API_URL": "@wdf-api-url"
   }
 }
