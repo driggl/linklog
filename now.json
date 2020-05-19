@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/now-builder",
+      "config": {}
+    }
+  ],
+  "routes": [
+    {
+      "src": "https://linklog-ui.driggl.now.sh/(.*)",
+      "status": 308,
+      "headers": {
+        "Location": "https://webdevflow.com"
+      }
+    }
+  ],
+  "env": {
+    "API_URL": "@api-url"
+  }
+}
