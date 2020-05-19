@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-# linklog
-A linklog application to connect multple blogs together
-=======
-# Web Dev Flow
+# API
 
-A link log application for Modern Web Developers.
+A linklog application for Modern Web developers to connect multple blogs together
 
 # Development
 
@@ -48,4 +44,26 @@ rspec
 You can also run tests without running the whole app:
 
 docker-compose run --rm specs rspec
->>>>>>> 285fcdac3b237a59eb1ed8f33a23eefae884800f
+
+# UI
+
+> A link-log application to connect multiple blogs together
+
+## Build Setup
+
+```bash
+# install dependencies
+$ yarn install
+
+# serve with hot reload at localhost:3000
+$ yarn dev
+
+# build for production and launch server
+$ yarn build
+$ yarn start
+
+# generate static project
+$ yarn generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
