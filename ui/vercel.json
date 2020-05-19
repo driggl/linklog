@@ -18,5 +18,10 @@
   ],
   "env": {
     "API_URL": "@wdf-api-url"
+  },
+  "build": {
+    "env": {
+      "API_URL": "@wdf-api-url"
+    }
   }
 }
