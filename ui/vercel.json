@@ -6,22 +6,5 @@
       "use": "@nuxtjs/now-builder",
       "config": {}
     }
-  ],
-  "routes": [
-    {
-      "src": "https://wdf.driggl.now.sh/(.*)",
-      "status": 308,
-      "headers": {
-        "Location": "https://webdevflow.com"
-      }
-    }
-  ],
-  "env": {
-    "API_URL": "@wdf-api-url"
-  },
-  "build": {
-    "env": {
-      "API_URL": "@wdf-api-url"
-    }
-  }
+  ]
 }
