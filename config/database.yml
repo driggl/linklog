@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  user: <%= ENV['DB_USER'] %>
+  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_NAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: wdf_development
+
+test:
+  <<: *default
+  database: wdf_test
+
+production:
+  <<: *default
+  database: wdf_production
+  username: api
+  password: <%= ENV['DB_PASSWORD'] %>

@@ -1,0 +1,22 @@
+inherit_from:
+  - .rubocop_disabled.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.6.3
+  Exclude:
+    - "db/schema.rb"
+    - "db/migrate/*"
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Commonly used screens these days easily fit more than 80 characters.
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"

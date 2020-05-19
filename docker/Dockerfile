@@ -1,0 +1,41 @@
+# Base image
+FROM ruby:2.7.1
+
+# Installation of dependencies
+RUN apt-get update -yqq \
+  && apt-get install -yqq --no-install-recommends \
+  build-essential \
+  libpq-dev \
+  nodejs \
+  locales \
+  && apt-get clean autoclean \
+  && apt-get autoremove -y \
+  && rm -rf \
+  /var/lib/apt \
+  /var/lib/dpkg/* \
+  /var/lib/cache \
+  /var/lib/log
+
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+# Add our Gemfile
+# and install gems
+COPY Gemfile* /tmp/
+WORKDIR /tmp
+RUN bundle install
+
+# Create a directory for our application
+# and set it as the working directory
+ENV APP_HOME /app/api
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
+
+# Copy over our application code
+COPY . $APP_HOME
+
+EXPOSE 3000
+
+CMD bin/start
