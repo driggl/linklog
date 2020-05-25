@@ -18,7 +18,7 @@
 /api/# Ignore master key for decrypting credentials and more.
 /api/config/master.key
 /api/spec/examples.txt
-/api/.env_prod
+/api/.env_*
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
