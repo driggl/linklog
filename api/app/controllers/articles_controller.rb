@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
 
   def update
     article = current_user.articles.find(params[:id])
-    article.update!(article_params)
+    article.update!(article_params.except(:id))
     head :no_content
   end
 
@@ -34,8 +34,11 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:data).require(:attributes).
-      permit(:title, :content, :slug) || ActionController::Parameters.new
+    permitted = (params.require(:data).require(:attributes).
+      permit(:title, :content, :slug) || ActionController::Parameters.new).to_h
+
+    permitted[:id] = params[:data][:id]
+    permitted
   end
 
   def serializer
