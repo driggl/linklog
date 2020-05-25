@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Seeders::UsersSeed.new.call
+Seeders::ArticlesSeed.new.call
