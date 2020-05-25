@@ -22,6 +22,7 @@ RUN apt-get update -yqq \
 # and install gems
 COPY Gemfile* /tmp/
 WORKDIR /tmp
+RUN bundle config set without 'development test'
 RUN bundle install
 
 # Create a directory for our application
