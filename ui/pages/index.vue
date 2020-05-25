@@ -1,75 +1,63 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
+  <div>
+    <v-layout column justify-center align-center class="teal white--text py-12">
       <div class="text-center">
-        <logo />
-        <vuetify-logo />
+        <h1>A link log for Modern Web Developers community</h1>
+        <p>
+          Made a library ? Written a blog post ? Found a useful tutorial ? Share
+          it with the Frontend Developers community here or just enjoy what
+          everyone else has found!
+        </p>
       </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a href="https://vuetifyjs.com" target="_blank"> documentation </a>.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a href="https://nuxtjs.org/" target="_blank">
-            Nuxt Documentation
-          </a>
-          <br />
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire">
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+    </v-layout>
+    <v-container>
+      <v-row
+        v-for="article in articles"
+        :key="article.id"
+        class="my-10"
+        align="center"
+      >
+        <v-col :cols="3">
+          <v-img :src="article.author.image" max-height="50" contain />
+        </v-col>
+        <v-col :cols="9">
+          <h2>{{ article.title }}</h2>
+          <div>{{ article.lead }}</div>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
+  data() {
+    return {
+      articles: [
+        {
+          id: 1,
+          title: 'Serverless Ruby on AWS Lambda with the Jets Framework',
+          lead:
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consequatur debitis dignissimos dolor expedita laboriosam mollitia odit perspiciatis, quisquam quos temporibus vero. At eveniet ex neque qui vel voluptates!',
+          author: {
+            nick: 'krystian50',
+            image:
+              'https://www.tm-town.com/assets/default_male600x600-79218392a28f78af249216e097aaf683.png'
+          }
+        },
+        {
+          id: 2,
+          title: 'Serverless Ruby on AWS Lambda with the Jets Framework',
+          lead:
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consequatur debitis dignissimos dolor expedita laboriosam mollitia odit perspiciatis, quisquam quos temporibus vero. At eveniet ex neque qui vel voluptates!',
+          author: {
+            nick: 'krystian50',
+            image:
+              'https://www.tm-town.com/assets/default_male600x600-79218392a28f78af249216e097aaf683.png'
+          }
+        }
+      ]
+    }
   }
 }
 </script>
