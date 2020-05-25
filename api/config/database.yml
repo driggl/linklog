@@ -17,7 +17,6 @@ test:
   database: wdf_test
 
 production:
+  port: <%= ENV['DB_PORT'] %>
   <<: *default
-  database: wdf_production
-  username: api
   password: <%= ENV['DB_PASSWORD'] %>
