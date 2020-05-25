@@ -16,7 +16,6 @@ module AuthAdapters
       raise AuthenticationError unless User.exists?(login: login)
 
       user = User.find_by(login: login)
-
       raise AuthenticationError unless user.password == password
 
       @user = user
