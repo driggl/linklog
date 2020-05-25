@@ -4,13 +4,13 @@ class ArticlesController < ApplicationController
   skip_before_action :authorize!, only: %i[index show]
 
   def index
-    options = { meta: pagination_meta, links: pagination_links }
+    options = { meta: pagination_meta, links: pagination_links, include: included }
     render json: serializer.new(paginated[:records], options)
   end
 
   def show
     article = Article.find(params[:id])
-    render json: serializer.new(article)
+    render json: serializer.new(article, include: included)
   end
 
   def create
@@ -47,5 +47,9 @@ class ArticlesController < ApplicationController
 
   def relation
     Article.recent
+  end
+
+  def included
+    %w[user]
   end
 end

@@ -5,4 +5,6 @@ class ArticleSerializer < ApplicationSerializer
   attribute :slug
   attribute :content
   attribute :parsed_content
+
+  belongs_to :user
 end
