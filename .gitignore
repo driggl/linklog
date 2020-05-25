@@ -3,18 +3,18 @@
 /api/.bundle
 /api/.byebug_history
 /api/.docker-sync
-/api/
+
 /api/# Ignore all logfiles and tempfiles.
 /api/log/*
 /api/tmp/*
 /api/*.log
 /api/!/log/.keep
 /api/!/tmp/.keep
-/api/
+
 /api/# Ignore uploaded files in development.
 /api/storage/*
 /api/!/storage/.keep
-/api/
+
 /api/# Ignore master key for decrypting credentials and more.
 /api/config/master.key
 /api/spec/examples.txt
