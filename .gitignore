@@ -91,6 +91,9 @@
 /ui/.nuxt
 
 # Nuxt generate
+/ui/static/sw.js
+
+# Nuxt generate
 /ui/dist
 
 # vuepress build output
