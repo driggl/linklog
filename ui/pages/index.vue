@@ -4,8 +4,8 @@
       <div class="text-center">
         <h1>A link log for Modern Web Developers community</h1>
         <p>
-          Made a library ? Written a blog post ? Found a useful tutorial ? Share
-          it with the Frontend Developers community here or just enjoy what
+          Made a library? Written a blog post? Found a useful tutorial? Share
+          it with the Modern Web Developers community here or just enjoy what
           everyone else has found!
         </p>
       </div>
