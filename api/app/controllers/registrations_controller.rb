@@ -5,18 +5,18 @@ class RegistrationsController < ApplicationController
 
   def create
     user = User.create!(registration_params.merge(provider: 'standard'))
-    render json: serializer.new(user), status: :created
+    response.headers['Authorization'] = "Bearer #{user.reload.access_token.token}"
+    head :created
   end
 
   private
 
-  def serializer
-    UserSerializer
-  end
-
   def registration_params
-    params.require(:data).require(:attributes).
-      permit(:login, :email, :password) ||
+    permitted = params.require(:data).require(:attributes).
+      permit(:login, :email, :name, :password) ||
       ActionController::Parameters.new
+
+    permitted[:id] = params[:data][:id]
+    permitted
   end
 end

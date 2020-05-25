@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  after_initialize :build_access_token, if: -> { access_token.nil? }
+
   def password
     return if auth_data['encrypted_password'].blank?
 

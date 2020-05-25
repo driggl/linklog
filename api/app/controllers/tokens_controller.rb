@@ -4,21 +4,17 @@ class TokensController < ApplicationController
   skip_before_action :authorize!, only: :create
 
   def create
-    authenticator = UserAuthenticator.new(authentication_params)
-    authenticator.call
-
-    render json: serializer.new(authenticator.access_token), status: :created
+    (authenticator = UserAuthenticator.new(authentication_params)).call
+    response.headers['Authorization'] = "Bearer #{authenticator.access_token.token}"
+    head :ok
   end
 
   def destroy
     current_user.access_token.destroy
+    head :no_content
   end
 
   private
-
-  def serializer
-    TokenSerializer
-  end
 
   def authentication_params
     (standard_auth_params || params.permit(:code)).to_h.symbolize_keys
