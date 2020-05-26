@@ -1,12 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
+    <v-navigation-drawer v-model="drawer" fixed app>
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -24,7 +18,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar fixed app>
       <v-toolbar-title class="teal--text" v-text="'WebDevFlow'" />
       <v-spacer />
       <v-btn icon @click.stop="drawer = !drawer">
@@ -34,7 +28,7 @@
     <v-content>
       <nuxt />
     </v-content>
-    <v-footer :fixed="fixed" app class="py-5">
+    <v-footer app class="py-5">
       Copyright &copy; WebDevFlow {{ new Date().getFullYear() }}
     </v-footer>
   </v-app>
@@ -44,9 +38,7 @@
 export default {
   data() {
     return {
-      clipped: false,
       drawer: false,
-      fixed: false,
       items: [
         {
           icon: 'mdi-apps',
@@ -58,8 +50,7 @@ export default {
           title: 'Inspire',
           to: '/inspire'
         }
-      ],
-      miniVariant: false
+      ]
     }
   }
 }
