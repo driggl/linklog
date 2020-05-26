@@ -24,7 +24,7 @@ options:
 
 syncs:
   wdf-api-sync:
-    src: "."
+    src: "../api"
 
     #host_disk_mount_mode: 'cached' # see https://docs.docker.com/docker-for-mac/osxfs-caching/#cached
     # other unison options can also be specified here, which will be used when run under osx,
