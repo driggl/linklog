@@ -53,7 +53,18 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true,
+    prefix: '/api'
+  },
+  proxy: {
+    '/api': {
+      target: 'https://api.webdevflow.com',
+      pathRewrite: {
+        '^/api': '/'
+      }
+    }
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
