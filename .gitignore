@@ -2,7 +2,7 @@
 # Ignore bundler config.
 /api/.bundle
 /api/.byebug_history
-/api/.docker-sync
+/**/.docker-sync
 
 /api/# Ignore all logfiles and tempfiles.
 /api/log/*
