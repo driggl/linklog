@@ -18,11 +18,15 @@
         align="center"
       >
         <v-col :cols="3">
-          <v-img :src="article.author.image" max-height="50" contain />
+          <v-img
+            src="https://www.tm-town.com/assets/default_male600x600-79218392a28f78af249216e097aaf683.png"
+            max-height="50"
+            contain
+          />
         </v-col>
         <v-col :cols="9">
-          <h2>{{ article.title }}</h2>
-          <div>{{ article.lead }}</div>
+          <h2>{{ article.attributes.title }}</h2>
+          <div>{{ article.attributes.slug }}</div>
         </v-col>
       </v-row>
     </v-container>
@@ -30,16 +34,17 @@
 </template>
 
 <script>
-import * as ArticlesDAO from '../lib/dao/articles-dao'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  data() {
-    return {
-      articles: null
-    }
+  computed: {
+    ...mapGetters('articles', ['articles'])
   },
-  async created() {
-    this.articles = await ArticlesDAO.getArticles()
+  created() {
+    this.FETCH_ARTICLES()
+  },
+  methods: {
+    ...mapActions('articles', ['FETCH_ARTICLES'])
   }
 }
 </script>
