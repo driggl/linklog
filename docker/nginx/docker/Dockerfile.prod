@@ -1,0 +1,6 @@
+FROM "nginx:1.15.3"
+
+RUN mkdir -p /etc/nginx/conf.d/
+COPY conf.d /etc/nginx/conf.d/
+COPY letsencrypt.conf /etc/nginx/letsencrypt.conf
+
