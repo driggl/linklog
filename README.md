@@ -22,7 +22,7 @@ To run project in development:
 
 ```
 # clone repo
-git clone git@github.com:driggl/linklog.git && cd linklog/docker
+git clone git@github.com:driggl/linklog.git && cd linklog/config
 
 # first time only: - install rubocop, build images, etc.
 sh scripts/dev-setup.sh 
