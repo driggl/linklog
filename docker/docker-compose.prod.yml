@@ -1,0 +1,29 @@
+version: "3"
+
+volumes:
+  certs:
+    external: false
+
+services:
+  webserver:
+    build:
+      context: ./nginx
+      dockerfile: docker/Dockerfile.prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - certs:/etc/nginx/certs
+    depends_on:
+      - api
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certs:/etc/letsencrypt
+  api:
+    image: wdf/api:prod
+    env_file:
+      - .env_api_prod
+    command: sh bin/start
+    ports:
+      - "3000:3000"
