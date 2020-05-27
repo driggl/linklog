@@ -20,8 +20,8 @@ RUBOCOP_PERFORMANCE_VERSION="1.5.1"
 RUBOCOP_RAILS_VERSION="2.4.0"
 
 echo ---------------------- Building docker images for development ----------------------
-docker build -t wdf/api:dev -f docker/Dockerfile .
-docker build -t wdf/api:test -f docker/Dockerfile.test .
+docker build -t wdf/api:dev -f ../api/docker/Dockerfile ../api
+docker build -t wdf/api:test -f ../api/docker/Dockerfile.test ../api
 
 echo ---------------------- Setting up database ----------------------
 
