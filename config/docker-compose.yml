@@ -22,7 +22,7 @@ services:
       - "wdf-api-sync:/app/api:nocopy"
       - /app/api/tmp
     ports:
-      - "3000:3000"
+      - "3031:3000"
     depends_on:
       - "db"
       - "memcached"
