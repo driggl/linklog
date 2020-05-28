@@ -13,7 +13,9 @@ export const state = () => {
 // Getters
 // =================================================
 export const getters = {
-  articles: (state) => state.articles
+  articles: (state) => state.articles,
+  findArticle: (state) => (slug) =>
+    state.articles.find((article) => article.slug === slug)
 }
 
 // =================================================
@@ -31,7 +33,9 @@ export const mutations = {
 export const actions = {
   async FETCH_ARTICLES({ commit }) {
     const response = await this.$axios.get('/articles')
-    const articles = response.data.data
+    const articles = response.data.data.map((item) => ({
+      ...item.attributes
+    }))
     commit('PUSH_ARTICLES', articles)
   }
 }
