@@ -1,18 +1,6 @@
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'db/schema.rb'
-
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'db/schema.rb'
-    - 'db/migrate/*'
 
 Style/RaiseArgs:
   Enabled: false
-
-Style/StringLiterals:
-  Exclude:
-    - 'db/schema.rb'
 
 Rails/SkipsModelValidations:
   Enabled: false
