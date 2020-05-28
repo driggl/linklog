@@ -8,8 +8,8 @@ require:
 AllCops:
   TargetRubyVersion: 2.6.3
   Exclude:
-    - "db/schema.rb"
-    - "db/migrate/*"
+    - "api/db/schema.rb"
+    - "api/db/migrate/*"
 Layout/DotPosition:
   EnforcedStyle: trailing
 
@@ -19,4 +19,4 @@ Metrics/LineLength:
 
 Metrics/BlockLength:
   Exclude:
-    - "spec/**/*"
+    - "api/spec/**/*"
