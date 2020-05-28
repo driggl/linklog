@@ -10,4 +10,12 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   scope :recent, -> { order(created_at: :desc) }
+
+  before_save :sync_excerpt
+
+  def sync_excerpt
+    return unless content_changed?
+
+    self.excerpt = content.split("\n").first
+  end
 end

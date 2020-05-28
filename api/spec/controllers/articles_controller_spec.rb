@@ -18,6 +18,8 @@ RSpec.describe ArticlesController do
         expect(json_data[index]['attributes']).to eq(
           'title' => article.title,
           'content' => article.content,
+          'parsedContent' => article.parsed_content,
+          'excerpt' => article.excerpt,
           'slug' => article.slug
         )
       end
@@ -54,6 +56,8 @@ RSpec.describe ArticlesController do
       expect(json_data['attributes']).to eq(
         'title' => article.title,
         'content' => article.content,
+        'parsedContent' => article.parsed_content,
+        'excerpt' => article.excerpt,
         'slug' => article.slug
       )
     end
