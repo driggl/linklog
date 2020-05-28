@@ -19,7 +19,8 @@
       >
         <v-col :cols="3">
           <v-img
-            src="https://www.tm-town.com/assets/default_male600x600-79218392a28f78af249216e097aaf683.png"
+            v-if="article.author.avatarUrl"
+            :src="article.author.avatarUrl"
             max-height="50"
             contain
           />
@@ -39,6 +40,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  name: 'MainPage',
   computed: {
     ...mapGetters('articles', ['articles'])
   },
