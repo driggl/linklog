@@ -15,6 +15,9 @@ on:
 
 jobs:
   test:
+    defaults:
+      run:
+        working-directory: api
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -36,21 +39,24 @@ jobs:
       with:
         ruby-version: 2.7.1
     - name: Install dependencies
-      run: cd api && bundle install --jobs 4 --retry 3
+      run: bundle install --jobs 4 --retry 3
     - name: Setup Database
       run: |
-        cd api && bundle exec rake db:create
-        cd api && bundle exec rake db:schema:load
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
       env:
         RAILS_ENV: test
         DB_ADAPTER: postgresql
         DB_USER: postgres
+        DB_HOST: localhost
         DB_PASSWORD: postgres
         DB_NAME: postgres
     - name: Run RSpec
-      run: cd api && COVERAGE=true bundle exec rspec
+      run: COVERAGE=true bundle exec rspec
       env:
+        RAILS_ENV: test
         DB_ADAPTER: postgresql
         DB_USER: postgres
+        DB_HOST: localhost
         DB_PASSWORD: postgres
         DB_NAME: postgres
