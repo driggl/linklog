@@ -33,6 +33,10 @@
         </v-col>
       </v-row>
     </v-container>
+    <infinite-loading
+      spinner="spiral"
+      @infinite="infiniteScroll"
+    ></infinite-loading>
   </div>
 </template>
 
@@ -45,10 +49,22 @@ export default {
     ...mapGetters('articles', ['articles'])
   },
   created() {
-    this.FETCH_ARTICLES()
+    if (!this.articles) {
+      this.FETCH_ARTICLES()
+    }
   },
   methods: {
-    ...mapActions('articles', ['FETCH_ARTICLES'])
+    ...mapActions('articles', ['FETCH_ARTICLES']),
+    infiniteScroll($state) {
+      setTimeout(async () => {
+        const completed = await this.FETCH_ARTICLES()
+        if (completed) {
+          $state.complete()
+        } else {
+          $state.loaded()
+        }
+      }, 500)
+    }
   }
 }
 </script>
