@@ -31,8 +31,14 @@ export const mutations = {
 // Actions
 // =================================================
 export const actions = {
-  async FETCH_ARTICLES({ commit }) {
-    const { data } = await this.$axios.get('/articles')
+  async FETCH_ARTICLES({ commit, state }) {
+    const PAGE_SIZE = 10
+    const { data } = await this.$axios.get('/articles', {
+      params: {
+        'page[number]': state.articles.length / PAGE_SIZE + 1,
+        'page[size]': PAGE_SIZE
+      }
+    })
     const articles = data.data.map((item) => {
       const userId = item.relationships.user.data.id
       const user = data.included.find(
@@ -53,5 +59,6 @@ export const actions = {
       }
     })
     commit('PUSH_ARTICLES', articles)
+    return !data.links.next
   }
 }
