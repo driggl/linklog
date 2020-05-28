@@ -41,14 +41,14 @@ RSpec.describe TokensController, type: :controller do
 
       before { user }
 
-      it 'should return 201 status code' do
+      it 'should return 200 status code' do
         subject
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status(:ok)
       end
 
-      it 'should return proper json body' do
+      it 'should return token in the header' do
         subject
-        expect(json_data['attributes']).to eq('token' => user.access_token.token)
+        expect(response.headers['Authorization']).to eq("Bearer #{user.access_token.token}")
       end
     end
 
@@ -87,16 +87,15 @@ RSpec.describe TokensController, type: :controller do
 
       subject { post :create, params: { code: 'valid_code' } }
 
-      it 'should return 201 status code' do
+      it 'should return 200 status code' do
         subject
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status(:ok)
       end
 
-      it 'should return proper json body' do
+      it 'should return token in the header' do
         expect { subject }.to(change { User.count }.by(1))
         user = User.find_by(login: 'jsmith1')
-        expect(json_data['attributes']).
-          to eq('token' => user.access_token.token)
+        expect(response.headers['Authorization']).to eq("Bearer #{user.access_token.token}")
       end
     end
   end
