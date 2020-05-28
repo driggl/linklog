@@ -49,7 +49,7 @@ export default {
     ...mapGetters('articles', ['articles'])
   },
   created() {
-    if (!this.articles) {
+    if (!this.articles.length) {
       this.FETCH_ARTICLES()
     }
   },
