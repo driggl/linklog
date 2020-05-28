@@ -1,3 +1,5 @@
+![Ruby](https://github.com/driggl/linklog/workflows/Ruby/badge.svg?branch=master)
+
 # LinkLog
 
 A linklog application for Modern Web developers to connect multple blogs together
@@ -25,7 +27,7 @@ To run project in development:
 git clone git@github.com:driggl/linklog.git && cd linklog/config
 
 # first time only: - install rubocop, build images, etc.
-sh scripts/dev-setup.sh 
+sh scripts/dev-setup.sh
 
 # run all API services in the background
 docker-compose up -d
