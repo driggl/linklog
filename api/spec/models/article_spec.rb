@@ -46,4 +46,14 @@ RSpec.describe Article, type: :model do
       )
     end
   end
+
+  describe '#sync_excerpt' do
+    let(:article) { build(:article, content: "Sample content\nAnd something else") }
+
+    it 'should sync excerpt after content update' do
+      expect(article.excerpt).to eq(nil)
+      article.save
+      expect(article.excerpt).to eq('Sample content')
+    end
+  end
 end
