@@ -39,8 +39,8 @@ jobs:
       run: cd api && bundle install --jobs 4 --retry 3
     - name: Setup Database
       run: |
-        bundle exec rake db:create
-        bundle exec rake db:schema:load
+        cd api && bundle exec rake db:create
+        cd api && bundle exec rake db:schema:load
       env:
         RAILS_ENV: test
         DB_ADAPTER: postgresql
@@ -48,7 +48,7 @@ jobs:
         DB_PASSWORD: postgres
         DB_NAME: postgres
     - name: Run RSpec
-      run: COVERAGE=true bundle exec rspec  --require rails_helper
+      run: cd api && COVERAGE=true bundle exec rspec
       env:
         DB_ADAPTER: postgresql
         DB_USER: postgres
