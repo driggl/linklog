@@ -25,8 +25,10 @@
           />
         </v-col>
         <v-col :cols="9">
-          <h2>{{ article.attributes.title }}</h2>
-          <div>{{ article.attributes.slug }}</div>
+          <nuxt-link :to="`/articles/${article.slug}`">
+            <h2>{{ article.title }}</h2>
+          </nuxt-link>
+          <div>{{ article.slug }}</div>
         </v-col>
       </v-row>
     </v-container>
