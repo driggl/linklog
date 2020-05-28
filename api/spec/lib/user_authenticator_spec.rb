@@ -10,7 +10,7 @@ RSpec.describe UserAuthenticator do
       expect(authenticator.adapter).to receive(:call).and_return(true)
       expect(authenticator.adapter).to receive(:user).
         at_least(:once).and_return(user)
-      expect { authenticator.call }.to(change { AccessToken.count }.by(1))
+      authenticator.call
       expect(authenticator.access_token).to be_present
     end
   end
