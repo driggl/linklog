@@ -28,7 +28,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/infiniteloading', ssr: false }],
+  plugins: [
+    { src: '~/plugins/infiniteloading', ssr: false },
+    '~/plugins/axios'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
