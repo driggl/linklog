@@ -33,10 +33,12 @@
         </v-col>
       </v-row>
     </v-container>
-    <infinite-loading
-      spinner="spiral"
-      @infinite="infiniteScroll"
-    ></infinite-loading>
+    <client-only>
+      <infinite-loading
+        spinner="spiral"
+        @infinite="infiniteScroll"
+      ></infinite-loading>
+    </client-only>
   </div>
 </template>
 
