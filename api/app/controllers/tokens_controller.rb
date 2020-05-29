@@ -6,7 +6,7 @@ class TokensController < ApplicationController
   def create
     (authenticator = UserAuthenticator.new(authentication_params)).call
     response.headers['Authorization'] = "Bearer #{authenticator.access_token.token}"
-    head :ok
+    render json: { token: authenticator.access_token.token, type: 'Bearer' }, status: :ok
   end
 
   def destroy
