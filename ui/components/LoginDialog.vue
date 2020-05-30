@@ -10,9 +10,11 @@
           Login
         </v-card-title>
 
-        <v-card-text>
+        <v-card-text class="pt-4">
+          <div v-if="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
           <v-form>
-            <!--<v-btn v-text="'Continue with Github'" />-->
             <v-text-field v-model="form.login" label="Login" />
             <v-text-field v-model="form.password" label="Password" />
           </v-form>
@@ -46,7 +48,8 @@ export default {
       form: {
         login: '',
         password: ''
-      }
+      },
+      errorMessage: null
     }
   },
 
@@ -58,14 +61,17 @@ export default {
         this.$emit('update:visible', false)
       } catch (e) {
         const error = e.response.data.errors[0]
-        alert(
-          `ENDPOINT: ${e.response.config.url}\n` +
-            error.title +
-            ' - ' +
-            error.detail
-        )
+        this.errorMessage = `${error.title} - ${error.detail}`
       }
     }
   }
 }
 </script>
+
+<style scoped>
+.error-message {
+  color: red; /* TODO: use variable */
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+</style>
