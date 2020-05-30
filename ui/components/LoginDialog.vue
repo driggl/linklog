@@ -15,8 +15,12 @@
             {{ errorMessage }}
           </div>
           <v-form>
-            <v-text-field v-model="form.login" label="Login" />
-            <v-text-field v-model="form.password" label="Password" />
+            <v-text-field id="login-input" v-model="form.login" label="Login" />
+            <v-text-field
+              id="password-input"
+              v-model="form.password"
+              label="Password"
+            />
           </v-form>
         </v-card-text>
 
