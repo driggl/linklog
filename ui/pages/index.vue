@@ -10,6 +10,9 @@
         </p>
       </div>
     </v-layout>
+    <v-container v-if="userLoggedIn">
+      <v-btn @click="$router.push(`/articles/new`)">Add article</v-btn>
+    </v-container>
     <v-container>
       <v-row
         v-for="article in articles"
@@ -25,11 +28,16 @@
             contain
           />
         </v-col>
-        <v-col :cols="9">
+        <v-col :cols="userLoggedIn ? 8 : 9">
           <nuxt-link :to="`/articles/${article.slug}`">
             <h2>{{ article.title }}</h2>
           </nuxt-link>
           <div>{{ article.slug }}</div>
+        </v-col>
+        <v-col v-if="userLoggedIn" :cols="1">
+          <nuxt-link :to="`/articles/${article.id}/edit`">
+            Edit
+          </nuxt-link>
         </v-col>
       </v-row>
     </v-container>
@@ -48,7 +56,8 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MainPage',
   computed: {
-    ...mapGetters('articles', ['articles'])
+    ...mapGetters('articles', ['articles']),
+    ...mapGetters('user', ['userLoggedIn'])
   },
   created() {
     if (!this.articles.length) {

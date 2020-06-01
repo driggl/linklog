@@ -1,3 +1,4 @@
+import * as TextUtils from '../lib/utils/text-utils'
 // =================================================
 // State
 // =================================================
@@ -46,6 +47,7 @@ export const actions = {
       )
 
       return {
+        id: item.id,
         title: item.attributes.title,
         slug: item.attributes.slug,
         content: item.attributes.content,
@@ -60,5 +62,41 @@ export const actions = {
     })
     commit('PUSH_ARTICLES', articles)
     return !data.links.next
+  },
+
+  async GET_ARTICLE(_, articleId) {
+    const { data } = await this.$axios.get(`/articles/${articleId}`)
+
+    const item = data.data
+    return {
+      id: item.id,
+      title: item.attributes.title,
+      slug: item.attributes.slug,
+      content: item.attributes.content
+    }
+  },
+
+  async CREATE_ARTICLE(_, article) {
+    await this.$axios.post('/articles', {
+      data: {
+        attributes: {
+          title: article.title,
+          content: article.content,
+          slug: TextUtils.slugify(article.title)
+        }
+      }
+    })
+  },
+
+  async UPDATE_ARTICLE(_, article) {
+    await this.$axios.patch(`/articles/${article.id}`, {
+      data: {
+        attributes: {
+          title: article.title,
+          content: article.content,
+          slug: TextUtils.slugify(article.title)
+        }
+      }
+    })
   }
 }
