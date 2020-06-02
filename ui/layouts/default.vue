@@ -34,7 +34,10 @@
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
-      <div v-else-if="user">Logged in as: {{ user.login }}</div>
+      <div v-else-if="user">
+        Logged in as: {{ user.login }}&nbsp;&nbsp;&nbsp;
+        <v-btn @click.stop="LOGOUT">Logout</v-btn>
+      </div>
     </v-app-bar>
     <v-content>
       <nuxt />
@@ -48,7 +51,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import LoginDialog from '~/components/LoginDialog'
 
 export default {
@@ -70,6 +73,13 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['userLoggedIn', 'user'])
+  },
+  methods: {
+    ...mapActions('user', ['LOAD_USER', 'LOGOUT'])
+  },
+
+  created() {
+    this.LOAD_USER()
   }
 }
 </script>
