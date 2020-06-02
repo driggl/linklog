@@ -1,17 +1,9 @@
 <template>
   <div>
-    <v-layout column justify-center align-center class="teal white--text py-12">
-      <div class="text-center">
-        <h1>A link log for Modern Web Developers community</h1>
-        <p>
-          Made a library? Written a blog post? Found a useful tutorial? Share it
-          with the Modern Web Developers community here or just enjoy what
-          everyone else has found!
-        </p>
-      </div>
-    </v-layout>
-    <v-container v-if="userLoggedIn">
-      <v-btn @click="$router.push(`/articles/new`)">Add article</v-btn>
+    <v-container v-if="userLoggedIn" class="text-center">
+      <v-btn outlined @click="$router.push(`/articles/new`)">
+        <v-icon color="teal">mdi-plus</v-icon>&nbsp;Add article
+      </v-btn>
     </v-container>
     <v-container>
       <v-row
@@ -36,7 +28,7 @@
         </v-col>
         <v-col v-if="userLoggedIn" :cols="1">
           <nuxt-link :to="`/articles/${article.id}/edit`">
-            Edit
+            <v-icon>mdi-pencil</v-icon>
           </nuxt-link>
         </v-col>
       </v-row>

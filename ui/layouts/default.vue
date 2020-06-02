@@ -40,6 +40,21 @@
       </div>
     </v-app-bar>
     <v-content>
+      <v-layout
+        column
+        justify-center
+        align-center
+        class="teal white--text py-12 mb-8"
+      >
+        <div class="text-center">
+          <h1>A link log for Modern Web Developers community</h1>
+          <p>
+            Made a library? Written a blog post? Found a useful tutorial? Share
+            it with the Modern Web Developers community here or just enjoy what
+            everyone else has found!
+          </p>
+        </div>
+      </v-layout>
       <nuxt />
     </v-content>
     <v-footer app class="py-5">
