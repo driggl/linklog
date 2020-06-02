@@ -15,11 +15,17 @@
             {{ errorMessage }}
           </div>
           <v-form>
-            <v-text-field id="login-input" v-model="form.login" label="Login" />
+            <v-text-field
+              id="login-input"
+              v-model="form.login"
+              label="Login"
+              type="email"
+            />
             <v-text-field
               id="password-input"
               v-model="form.password"
               label="Password"
+              type="password"
             />
           </v-form>
         </v-card-text>
@@ -58,10 +64,11 @@ export default {
   },
 
   methods: {
-    ...mapActions('user', ['LOGIN']),
+    ...mapActions('user', ['LOGIN', 'LOAD_USER']),
     async login() {
       try {
         await this.LOGIN(this.form)
+        await this.LOAD_USER()
         this.$emit('update:visible', false)
       } catch (e) {
         const error = e.response.data.errors[0]
