@@ -56,6 +56,6 @@ export const actions = {
 
   async LOAD_USER({ commit }) {
     const { data } = await this.$axios.get('/me')
-    commit('STORE_USER', { ...data.data.attributes })
+    commit('STORE_USER', { id: data.data.id, ...data.data.attributes })
   }
 }

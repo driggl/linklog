@@ -51,7 +51,9 @@ export const actions = {
         title: item.attributes.title,
         slug: item.attributes.slug,
         content: item.attributes.content,
+        excerpt: item.attributes.excerpt,
         author: {
+          id: user.id,
           login: user.attributes.login,
           name: user.attributes.name,
           email: user.attributes.email,
@@ -72,7 +74,8 @@ export const actions = {
       id: item.id,
       title: item.attributes.title,
       slug: item.attributes.slug,
-      content: item.attributes.content
+      content: item.attributes.content,
+      excerpt: item.attributes.excerpt
     }
   },
 

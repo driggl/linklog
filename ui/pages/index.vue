@@ -24,9 +24,9 @@
           <nuxt-link :to="`/articles/${article.slug}`">
             <h2>{{ article.title }}</h2>
           </nuxt-link>
-          <div>{{ article.slug }}</div>
+          <div v-html="marked(article.excerpt)"></div>
         </v-col>
-        <v-col v-if="userLoggedIn" :cols="1">
+        <v-col v-if="userLoggedIn && article.author.id === user.id" :cols="1">
           <nuxt-link :to="`/articles/${article.id}/edit`">
             <v-icon>mdi-pencil</v-icon>
           </nuxt-link>
@@ -44,12 +44,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import marked from 'marked'
 
 export default {
   name: 'MainPage',
   computed: {
     ...mapGetters('articles', ['articles']),
-    ...mapGetters('user', ['userLoggedIn'])
+    ...mapGetters('user', ['userLoggedIn', 'user'])
   },
   created() {
     if (!this.articles.length) {
@@ -67,7 +68,8 @@ export default {
           $state.loaded()
         }
       }, 500)
-    }
+    },
+    marked
   }
 }
 </script>
