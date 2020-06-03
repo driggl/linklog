@@ -21,13 +21,13 @@
           />
         </v-col>
         <v-col :cols="userLoggedIn ? 8 : 9">
-          <nuxt-link :to="`/articles/${article.slug}`">
+          <nuxt-link :to="`/articles/${article.slug}`" class="article-link">
             <h2>{{ article.title }}</h2>
           </nuxt-link>
           <div v-html="marked(article.excerpt)"></div>
         </v-col>
         <v-col v-if="userLoggedIn && article.author.id === user.id" :cols="1">
-          <nuxt-link :to="`/articles/${article.id}/edit`">
+          <nuxt-link :to="`/articles/${article.id}/edit`" class="icon-link">
             <v-icon>mdi-pencil</v-icon>
           </nuxt-link>
         </v-col>
@@ -73,3 +73,24 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.article-link {
+  color: #000000;
+  margin-bottom: 10px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+.icon-link {
+  text-decoration: none;
+}
+
+.icon-link:hover i {
+  color: #000000 !important;
+}
+</style>
