@@ -9,6 +9,10 @@ describe('Default layout', () => {
         getters: {
           userLoggedIn: () => false,
           user: () => null
+        },
+        actions: {
+          LOAD_USER: () => {},
+          LOGOUT: () => {}
         }
       })
     })
