@@ -1,15 +1,10 @@
 <template>
   <div>
-    <v-layout column justify-center align-center class="teal white--text py-12">
-      <div class="text-center">
-        <h1>A link log for Modern Web Developers community</h1>
-        <p>
-          Made a library? Written a blog post? Found a useful tutorial? Share it
-          with the Modern Web Developers community here or just enjoy what
-          everyone else has found!
-        </p>
-      </div>
-    </v-layout>
+    <v-container v-if="userLoggedIn" class="text-center">
+      <v-btn outlined @click="$router.push(`/articles/new`)">
+        <v-icon color="teal">mdi-plus</v-icon>&nbsp;Add article
+      </v-btn>
+    </v-container>
     <v-container>
       <v-row
         v-for="article in articles"
@@ -25,11 +20,16 @@
             contain
           />
         </v-col>
-        <v-col :cols="9">
-          <nuxt-link :to="`/articles/${article.slug}`">
+        <v-col :cols="userLoggedIn ? 8 : 9">
+          <nuxt-link :to="`/articles/${article.slug}`" class="article-link">
             <h2>{{ article.title }}</h2>
           </nuxt-link>
-          <div>{{ article.slug }}</div>
+          <div v-html="marked(article.excerpt)"></div>
+        </v-col>
+        <v-col v-if="userLoggedIn && article.author.id === user.id" :cols="1">
+          <nuxt-link :to="`/articles/${article.id}/edit`" class="icon-link">
+            <v-icon>mdi-pencil</v-icon>
+          </nuxt-link>
         </v-col>
       </v-row>
     </v-container>
@@ -44,11 +44,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import marked from 'marked'
 
 export default {
   name: 'MainPage',
   computed: {
-    ...mapGetters('articles', ['articles'])
+    ...mapGetters('articles', ['articles']),
+    ...mapGetters('user', ['userLoggedIn', 'user'])
   },
   created() {
     if (!this.articles.length) {
@@ -66,7 +68,29 @@ export default {
           $state.loaded()
         }
       }, 500)
-    }
+    },
+    marked
   }
 }
 </script>
+
+<style scoped>
+.article-link {
+  color: #000000;
+  margin-bottom: 10px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+.icon-link {
+  text-decoration: none;
+}
+
+.icon-link:hover i {
+  color: #000000 !important;
+}
+</style>

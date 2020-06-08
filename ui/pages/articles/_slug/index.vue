@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <h1>{{ article.title }}</h1>
+      <h1 class="mb-10">{{ article.title }}</h1>
       <div
         v-if="article.content"
         id="article-content"

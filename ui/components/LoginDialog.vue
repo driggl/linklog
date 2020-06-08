@@ -10,11 +10,11 @@
           Login
         </v-card-title>
 
-        <v-card-text class="pt-4">
-          <div v-if="errorMessage" class="error-message">
-            {{ errorMessage }}
-          </div>
-          <v-form v-model="valid">
+        <v-form v-model="valid" @submit.prevent="login">
+          <v-card-text class="pt-4">
+            <div v-if="errorMessage" class="error-message">
+              {{ errorMessage }}
+            </div>
             <v-text-field
               id="login-input"
               v-model="form.login"
@@ -29,17 +29,17 @@
               label="Password"
               type="password"
             />
-          </v-form>
-        </v-card-text>
+          </v-card-text>
 
-        <v-divider />
+          <v-divider />
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text :disabled="!valid" @click="login">
-            Log in
-          </v-btn>
-        </v-card-actions>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" :disabled="!valid" type="submit">
+              Log in
+            </v-btn>
+          </v-card-actions>
+        </v-form>
       </v-card>
     </v-dialog>
   </div>
