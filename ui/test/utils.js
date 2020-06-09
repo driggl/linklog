@@ -17,13 +17,7 @@ export function shallow(Component, config) {
 
   return VueTestUtils.shallowMount(Component, {
     vuetify: new Vuetify({ theme: {} }),
-    stubs: [
-      'Nuxt',
-      'router-link',
-      'nuxt-link',
-      'infinite-loading',
-      'client-only'
-    ],
+    stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only'],
     localVue,
     sync: false,
     ...config
@@ -40,13 +34,7 @@ export function mount(Component, config) {
 
   return VueTestUtils.mount(Component, {
     vuetify: new Vuetify({ theme: {} }),
-    stubs: [
-      'Nuxt',
-      'router-link',
-      'nuxt-link',
-      'infinite-loading',
-      'client-only'
-    ],
+    stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only'],
     localVue,
     sync: false,
     ...config

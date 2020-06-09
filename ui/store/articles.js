@@ -15,8 +15,7 @@ export const state = () => {
 // =================================================
 export const getters = {
   articles: (state) => state.articles,
-  findArticle: (state) => (slug) =>
-    state.articles.find((article) => article.slug === slug)
+  findArticle: (state) => (slug) => state.articles.find((article) => article.slug === slug)
 }
 
 // =================================================
@@ -27,9 +26,7 @@ export const mutations = {
     state.articles.push(...articles)
   },
   REMOVE_ARTICLE: (state, articleId) => {
-    const index = state.articles.findIndex(
-      (article) => article.id === articleId
-    )
+    const index = state.articles.findIndex((article) => article.id === articleId)
     state.articles.splice(index, 1)
   }
 }
@@ -48,9 +45,7 @@ export const actions = {
     })
     const articles = data.data.map((item) => {
       const userId = item.relationships.user.data.id
-      const user = data.included.find(
-        (i) => i.type === 'user' && i.id === userId
-      )
+      const user = data.included.find((i) => i.type === 'user' && i.id === userId)
 
       return {
         id: item.id,

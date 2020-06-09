@@ -6,19 +6,9 @@
       </v-btn>
     </v-container>
     <v-container>
-      <v-row
-        v-for="article in articles"
-        :key="article.id"
-        class="my-10"
-        align="center"
-      >
+      <v-row v-for="article in articles" :key="article.id" class="my-10" align="center">
         <v-col :cols="3">
-          <v-img
-            v-if="article.author.avatarUrl"
-            :src="article.author.avatarUrl"
-            max-height="50"
-            contain
-          />
+          <v-img v-if="article.author.avatarUrl" :src="article.author.avatarUrl" max-height="50" contain />
         </v-col>
         <v-col :cols="userLoggedIn ? 8 : 9">
           <nuxt-link :to="`/articles/${article.slug}`" class="article-link">
@@ -37,18 +27,13 @@
       </v-row>
     </v-container>
     <client-only>
-      <infinite-loading
-        spinner="spiral"
-        @infinite="infiniteScroll"
-      ></infinite-loading>
+      <infinite-loading spinner="spiral" @infinite="infiniteScroll"></infinite-loading>
     </client-only>
     <confirmation-dialog
       v-if="articleToDelete"
       :visible="!!articleToDelete"
       title="Delete article"
-      :text="
-        `Are you sure you want to delete article '${articleToDelete.title}'`
-      "
+      :text="`Are you sure you want to delete article '${articleToDelete.title}'`"
       @cancel="articleToDelete = null"
       @confirm="deleteArticle"
     />

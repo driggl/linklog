@@ -1,10 +1,6 @@
 <template>
   <div>
-    <v-dialog
-      width="500"
-      :value="visible"
-      @input="$emit('update:visible', false)"
-    >
+    <v-dialog width="500" :value="visible" @input="$emit('update:visible', false)">
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
           Registration
@@ -15,13 +11,7 @@
             <div v-if="errorMessage" class="error-message">
               {{ errorMessage }}
             </div>
-            <v-text-field
-              id="name-input"
-              v-model="form.name"
-              :rules="[rules.required]"
-              label="Name"
-              type="text"
-            />
+            <v-text-field id="name-input" v-model="form.name" :rules="[rules.required]" label="Name" type="text" />
             <v-text-field
               id="email-input"
               v-model="form.email"
@@ -29,12 +19,7 @@
               label="Email"
               type="email"
             />
-            <v-text-field
-              id="login-input"
-              v-model="form.login"
-              :rules="[rules.required]"
-              label="Login"
-            />
+            <v-text-field id="login-input" v-model="form.login" :rules="[rules.required]" label="Login" />
             <v-text-field
               id="password-input"
               v-model="form.password"
@@ -79,13 +64,9 @@ export default {
       },
       valid: false,
       rules: {
-        email: (v) =>
-          ValidationUtils.isValidEmail(v) ||
-          'You need to type valid email address',
-        required: (v) =>
-          ValidationUtils.isNotEmpty(v) || 'This field is required',
-        minLength: (v) =>
-          v.length > 4 || 'This field need to have at least 5 characters'
+        email: (v) => ValidationUtils.isValidEmail(v) || 'You need to type valid email address',
+        required: (v) => ValidationUtils.isNotEmpty(v) || 'This field is required',
+        minLength: (v) => v.length > 4 || 'This field need to have at least 5 characters'
       },
       errorMessage: null
     }
