@@ -30,6 +30,9 @@
           <nuxt-link :to="`/articles/${article.id}/edit`" class="icon-link">
             <v-icon>mdi-pencil</v-icon>
           </nuxt-link>
+          <a class="icon-link" @click.prevent="articleToDelete = article">
+            <v-icon>mdi-delete</v-icon>
+          </a>
         </v-col>
       </v-row>
     </v-container>
@@ -39,15 +42,34 @@
         @infinite="infiniteScroll"
       ></infinite-loading>
     </client-only>
+    <confirmation-dialog
+      v-if="articleToDelete"
+      :visible="!!articleToDelete"
+      title="Delete article"
+      :text="
+        `Are you sure you want to delete article '${articleToDelete.title}'`
+      "
+      @cancel="articleToDelete = null"
+      @confirm="deleteArticle"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import marked from 'marked'
+import ConfirmationDialog from '~/components/ConfirmationDialog'
 
 export default {
   name: 'MainPage',
+  components: {
+    ConfirmationDialog
+  },
+  data() {
+    return {
+      articleToDelete: null
+    }
+  },
   computed: {
     ...mapGetters('articles', ['articles']),
     ...mapGetters('user', ['userLoggedIn', 'user'])
@@ -58,7 +80,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('articles', ['FETCH_ARTICLES']),
+    ...mapActions('articles', ['FETCH_ARTICLES', 'DELETE_ARTICLE']),
     infiniteScroll($state) {
       setTimeout(async () => {
         const completed = await this.FETCH_ARTICLES()
@@ -68,6 +90,10 @@ export default {
           $state.loaded()
         }
       }, 500)
+    },
+    async deleteArticle() {
+      await this.DELETE_ARTICLE(this.articleToDelete.id)
+      this.articleToDelete = null
     },
     marked
   }
