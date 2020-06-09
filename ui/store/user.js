@@ -54,6 +54,14 @@ export const actions = {
     commit('CLEAN_USER')
   },
 
+  async REGISTER(_, registrationData) {
+    await this.$axios.post('/sign_up', {
+      data: {
+        attributes: registrationData
+      }
+    })
+  },
+
   async LOAD_USER({ commit }) {
     const { data } = await this.$axios.get('/me')
     commit('STORE_USER', { id: data.data.id, ...data.data.attributes })

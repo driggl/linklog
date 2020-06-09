@@ -34,6 +34,13 @@
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
+      <v-btn
+        v-if="!userLoggedIn"
+        @click.stop="registrationFormDisplayed = true"
+        color="primary"
+      >
+        Register
+      </v-btn>
       <div v-else-if="user">
         Logged in as: {{ user.login }}&nbsp;&nbsp;&nbsp;
         <v-btn @click.stop="LOGOUT">Logout</v-btn>
@@ -62,21 +69,25 @@
     </v-footer>
 
     <login-dialog :visible.sync="loginFormDisplayed" />
+    <registration-dialog :visible.sync="registrationFormDisplayed" />
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import LoginDialog from '~/components/LoginDialog'
+import RegistrationDialog from '~/components/RegistrationDialog'
 
 export default {
   components: {
-    LoginDialog
+    LoginDialog,
+    RegistrationDialog
   },
   data() {
     return {
       drawer: false,
       loginFormDisplayed: false,
+      registrationFormDisplayed: false,
       items: [
         {
           icon: 'mdi-apps',
