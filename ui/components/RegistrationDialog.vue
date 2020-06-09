@@ -7,14 +7,28 @@
     >
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
-          Login
+          Registration
         </v-card-title>
 
-        <v-form v-model="valid" @submit.prevent="login">
+        <v-form v-model="valid" @submit.prevent="register">
           <v-card-text class="pt-4">
             <div v-if="errorMessage" class="error-message">
               {{ errorMessage }}
             </div>
+            <v-text-field
+              id="name-input"
+              v-model="form.name"
+              :rules="[rules.required]"
+              label="Name"
+              type="text"
+            />
+            <v-text-field
+              id="email-input"
+              v-model="form.email"
+              :rules="[rules.required, rules.email]"
+              label="Email"
+              type="email"
+            />
             <v-text-field
               id="login-input"
               v-model="form.login"
@@ -35,7 +49,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="primary" :disabled="!valid" type="submit">
-              Log in
+              Register
             </v-btn>
           </v-card-actions>
         </v-form>
@@ -58,11 +72,16 @@ export default {
   data() {
     return {
       form: {
+        name: '',
+        email: '',
         login: '',
         password: ''
       },
       valid: false,
       rules: {
+        email: (v) =>
+          ValidationUtils.isValidEmail(v) ||
+          'You need to type valid email address',
         required: (v) =>
           ValidationUtils.isNotEmpty(v) || 'This field is required',
         minLength: (v) =>
@@ -73,11 +92,10 @@ export default {
   },
 
   methods: {
-    ...mapActions('user', ['LOGIN', 'LOAD_USER']),
-    async login() {
+    ...mapActions('user', ['REGISTER']),
+    async register() {
       try {
-        await this.LOGIN(this.form)
-        await this.LOAD_USER()
+        await this.REGISTER(this.form)
         this.$emit('update:visible', false)
       } catch (e) {
         const error = e.response.data.errors[0]
