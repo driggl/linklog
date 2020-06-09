@@ -1,10 +1,6 @@
 <template>
   <div>
-    <v-dialog
-      width="500"
-      :value="visible"
-      @input="$emit('update:visible', false)"
-    >
+    <v-dialog width="500" :value="visible" @input="$emit('update:visible', false)">
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
           Login
@@ -15,12 +11,7 @@
             <div v-if="errorMessage" class="error-message">
               {{ errorMessage }}
             </div>
-            <v-text-field
-              id="login-input"
-              v-model="form.login"
-              :rules="[rules.required]"
-              label="Login"
-            />
+            <v-text-field id="login-input" v-model="form.login" :rules="[rules.required]" label="Login" />
             <v-text-field
               id="password-input"
               v-model="form.password"
@@ -63,10 +54,8 @@ export default {
       },
       valid: false,
       rules: {
-        required: (v) =>
-          ValidationUtils.isNotEmpty(v) || 'This field is required',
-        minLength: (v) =>
-          v.length > 4 || 'This field need to have at least 5 characters'
+        required: (v) => ValidationUtils.isNotEmpty(v) || 'This field is required',
+        minLength: (v) => v.length > 4 || 'This field need to have at least 5 characters'
       },
       errorMessage: null
     }

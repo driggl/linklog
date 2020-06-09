@@ -19,5 +19,19 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        printWidth: 120
+      }
+    ],
+    "vue/no-v-html": 0,
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": 8,
+      "multiline": {
+        "max": 1,
+        "allowFirstLine": false
+      }
+    }]
   }
 }

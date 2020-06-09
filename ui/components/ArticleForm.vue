@@ -1,11 +1,7 @@
 <template>
   <v-form v-model="valid" @submit.prevent="$emit('save')">
     <div>
-      <v-text-field
-        v-model="article.title"
-        label="Title"
-        :rules="[rules.required]"
-      />
+      <v-text-field v-model="article.title" label="Title" :rules="[rules.required]" />
     </div>
     <div>
       <v-textarea
@@ -35,10 +31,8 @@ export default {
   data() {
     return {
       rules: {
-        required: (v) =>
-          ValidationUtils.isNotEmpty(v) || 'This field is required',
-        minLength5: (v) =>
-          v.length > 5 || 'This field need to have at least 5 characters'
+        required: (v) => ValidationUtils.isNotEmpty(v) || 'This field is required',
+        minLength5: (v) => v.length > 5 || 'This field need to have at least 5 characters'
       },
       valid: false
     }

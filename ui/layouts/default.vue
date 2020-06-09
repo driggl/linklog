@@ -2,13 +2,7 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
+        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -25,20 +19,11 @@
       <v-btn icon hidden @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-      <v-btn
-        v-if="!userLoggedIn"
-        text
-        color="teal"
-        @click.stop="loginFormDisplayed = true"
-      >
+      <v-btn v-if="!userLoggedIn" text color="teal" @click.stop="loginFormDisplayed = true">
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
-      <v-btn
-        v-if="!userLoggedIn"
-        @click.stop="registrationFormDisplayed = true"
-        color="primary"
-      >
+      <v-btn v-if="!userLoggedIn" color="primary" @click.stop="registrationFormDisplayed = true">
         Register
       </v-btn>
       <div v-else-if="user">
@@ -47,26 +32,18 @@
       </div>
     </v-app-bar>
     <v-content>
-      <v-layout
-        column
-        justify-center
-        align-center
-        class="teal white--text py-12 mb-8"
-      >
+      <v-layout column justify-center align-center class="teal white--text py-12 mb-8">
         <div class="text-center">
           <h1>A link log for Modern Web Developers community</h1>
           <p>
-            Made a library? Written a blog post? Found a useful tutorial? Share
-            it with the Modern Web Developers community here or just enjoy what
-            everyone else has found!
+            Made a library? Written a blog post? Found a useful tutorial? Share it with the Modern Web Developers
+            community here or just enjoy what everyone else has found!
           </p>
         </div>
       </v-layout>
       <nuxt />
     </v-content>
-    <v-footer app class="py-5">
-      Copyright &copy; WebDevFlow {{ new Date().getFullYear() }}
-    </v-footer>
+    <v-footer app class="py-5"> Copyright &copy; WebDevFlow {{ new Date().getFullYear() }} </v-footer>
 
     <login-dialog :visible.sync="loginFormDisplayed" />
     <registration-dialog :visible.sync="registrationFormDisplayed" />
@@ -100,12 +77,11 @@ export default {
   computed: {
     ...mapGetters('user', ['userLoggedIn', 'user'])
   },
-  methods: {
-    ...mapActions('user', ['LOAD_USER', 'LOGOUT'])
-  },
-
   created() {
     this.LOAD_USER()
+  },
+  methods: {
+    ...mapActions('user', ['LOAD_USER', 'LOGOUT'])
   }
 }
 </script>

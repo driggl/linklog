@@ -2,11 +2,7 @@
   <div>
     <v-container>
       <h1 class="mb-10">{{ article.title }}</h1>
-      <div
-        v-if="article.content"
-        id="article-content"
-        v-html="marked(article.content)"
-      ></div>
+      <div v-if="article.content" id="article-content" v-html="marked(article.content)"></div>
     </v-container>
   </div>
 </template>

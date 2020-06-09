@@ -1,10 +1,6 @@
 <template>
   <div>
-    <v-dialog
-      width="500"
-      :value="visible"
-      @input="$emit('update:visible', false)"
-    >
+    <v-dialog width="500" :value="visible" @input="$emit('update:visible', false)">
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
           {{ title }}
