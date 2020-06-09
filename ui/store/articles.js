@@ -25,6 +25,12 @@ export const getters = {
 export const mutations = {
   PUSH_ARTICLES: (state, articles) => {
     state.articles.push(...articles)
+  },
+  REMOVE_ARTICLE: (state, articleId) => {
+    const index = state.articles.findIndex(
+      (article) => article.id === articleId
+    )
+    state.articles.splice(index, 1)
   }
 }
 
@@ -77,6 +83,11 @@ export const actions = {
       content: item.attributes.content,
       excerpt: item.attributes.excerpt
     }
+  },
+
+  async DELETE_ARTICLE({ commit }, articleId) {
+    await this.$axios.delete(`/articles/${articleId}`)
+    commit('REMOVE_ARTICLE', articleId)
   },
 
   async CREATE_ARTICLE(_, article) {
