@@ -19,16 +19,16 @@
       <v-btn icon hidden @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-      <v-btn v-if="!userLoggedIn" text color="teal" @click.stop="loginFormDisplayed = true">
+      <v-btn v-if="!$auth.loggedIn" text color="teal" @click.stop="loginFormDisplayed = true">
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
-      <v-btn v-if="!userLoggedIn" color="primary" @click.stop="registrationFormDisplayed = true">
+      <v-btn v-if="!$auth.loggedIn" color="primary" @click.stop="registrationFormDisplayed = true">
         Register
       </v-btn>
-      <div v-else-if="user">
+      <div v-if="user">
         Logged in as: {{ user.login }}&nbsp;&nbsp;&nbsp;
-        <v-btn @click.stop="LOGOUT">Logout</v-btn>
+        <v-btn @click.stop="$auth.logout()">Logout</v-btn>
       </div>
     </v-app-bar>
     <v-content>
@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import LoginDialog from '~/components/LoginDialog'
 import RegistrationDialog from '~/components/RegistrationDialog'
 
@@ -75,15 +74,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['userLoggedIn', 'user'])
-  },
-  created() {
-    if (this.userLoggedIn) {
-      this.LOAD_USER()
+    user() {
+      const item = this.$auth.user
+      return item && { id: item.id, ...item.attributes }
     }
-  },
-  methods: {
-    ...mapActions('user', ['LOAD_USER', 'LOGOUT'])
   }
 }
 </script>

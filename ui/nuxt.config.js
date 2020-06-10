@@ -29,7 +29,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/infiniteloading', ssr: false }, '~/plugins/axios'],
+  plugins: [{ src: '~/plugins/infiniteloading', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -46,6 +46,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
@@ -63,6 +64,20 @@ export default {
       target: 'https://api.webdevflow.com',
       pathRewrite: {
         '^/api': '/'
+      }
+    }
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'token' },
+          user: { url: '/me', method: 'get', propertyName: 'data' }
+        }
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+        // globalToken: true,
+        // autoFetchUser: true
       }
     }
   },

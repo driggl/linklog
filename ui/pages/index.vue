@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container v-if="userLoggedIn" class="text-center">
+    <v-container v-if="$auth.loggedIn" class="text-center">
       <v-btn outlined @click="$router.push(`/articles/new`)">
         <v-icon color="teal">mdi-plus</v-icon>&nbsp;Add article
       </v-btn>
@@ -10,13 +10,13 @@
         <v-col :cols="3">
           <v-img v-if="article.author.avatarUrl" :src="article.author.avatarUrl" max-height="50" contain />
         </v-col>
-        <v-col :cols="userLoggedIn ? 8 : 9">
+        <v-col :cols="$auth.loggedIn ? 8 : 9">
           <nuxt-link :to="`/articles/${article.slug}`" class="article-link">
             <h2>{{ article.title }}</h2>
           </nuxt-link>
           <div v-html="marked(article.excerpt)"></div>
         </v-col>
-        <v-col v-if="userLoggedIn && article.author.id === user.id" :cols="1">
+        <v-col v-if="$auth.loggedIn && article.author.id === $auth.user.id" :cols="1">
           <nuxt-link :to="`/articles/${article.id}/edit`" class="icon-link">
             <v-icon>mdi-pencil</v-icon>
           </nuxt-link>
@@ -50,19 +50,18 @@ export default {
   components: {
     ConfirmationDialog
   },
+  async fetch() {
+    if (!this.articles.length) {
+      await this.FETCH_ARTICLES()
+    }
+  },
   data() {
     return {
       articleToDelete: null
     }
   },
   computed: {
-    ...mapGetters('articles', ['articles']),
-    ...mapGetters('user', ['userLoggedIn', 'user'])
-  },
-  async fetch() {
-    if (!this.articles.length) {
-      await this.FETCH_ARTICLES()
-    }
+    ...mapGetters('articles', ['articles'])
   },
   methods: {
     ...mapActions('articles', ['FETCH_ARTICLES', 'DELETE_ARTICLE']),
