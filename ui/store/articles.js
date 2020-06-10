@@ -80,8 +80,7 @@ export const actions = {
       data: {
         attributes: {
           title: article.title,
-          content: article.content,
-          slug: TextUtils.slugify(article.title)
+          content: article.content
         }
       }
     })
