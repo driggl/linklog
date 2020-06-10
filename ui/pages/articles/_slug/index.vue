@@ -12,14 +12,14 @@ import { mapActions } from 'vuex'
 import marked from 'marked'
 
 export default {
+  async fetch() {
+    this.article = await this.GET_ARTICLE(this.$route.params.slug)
+  },
+
   data() {
     return {
       article: null
     }
-  },
-
-  async fetch() {
-    this.article = await this.GET_ARTICLE(this.$route.params.slug)
   },
 
   methods: {

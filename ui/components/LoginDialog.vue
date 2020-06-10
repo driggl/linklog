@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import * as ValidationUtils from '~/lib/utils/validation-utils'
 
 export default {
@@ -62,11 +61,14 @@ export default {
   },
 
   methods: {
-    ...mapActions('user', ['LOGIN', 'LOAD_USER']),
     async login() {
       try {
-        await this.LOGIN(this.form)
-        await this.LOAD_USER()
+        const data = {
+          data: {
+            attributes: this.form
+          }
+        }
+        await this.$auth.loginWith('local', { data })
         this.$emit('update:visible', false)
       } catch (e) {
         const error = e.response.data.errors[0]
