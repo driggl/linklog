@@ -78,7 +78,9 @@ export default {
     ...mapGetters('user', ['userLoggedIn', 'user'])
   },
   created() {
-    this.LOAD_USER()
+    if (this.userLoggedIn) {
+      this.LOAD_USER()
+    }
   },
   methods: {
     ...mapActions('user', ['LOAD_USER', 'LOGOUT'])
