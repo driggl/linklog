@@ -59,9 +59,9 @@ export default {
     ...mapGetters('articles', ['articles']),
     ...mapGetters('user', ['userLoggedIn', 'user'])
   },
-  created() {
+  async fetch() {
     if (!this.articles.length) {
-      this.FETCH_ARTICLES()
+      await this.FETCH_ARTICLES()
     }
   },
   methods: {
