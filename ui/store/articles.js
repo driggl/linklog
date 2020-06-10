@@ -47,21 +47,7 @@ export const actions = {
       const userId = item.relationships.user.data.id
       const user = data.included.find((i) => i.type === 'user' && i.id === userId)
 
-      return {
-        id: item.id,
-        title: item.attributes.title,
-        slug: item.attributes.slug,
-        content: item.attributes.content,
-        excerpt: item.attributes.excerpt,
-        author: {
-          id: user.id,
-          login: user.attributes.login,
-          name: user.attributes.name,
-          email: user.attributes.email,
-          url: user.attributes.url,
-          avatarUrl: user.attributes.avatarUrl
-        }
-      }
+      return mapArticle(item, user)
     })
     commit('PUSH_ARTICLES', articles)
     return !data.links.next
@@ -69,15 +55,7 @@ export const actions = {
 
   async GET_ARTICLE(_, articleId) {
     const { data } = await this.$axios.get(`/articles/${articleId}`)
-
-    const item = data.data
-    return {
-      id: item.id,
-      title: item.attributes.title,
-      slug: item.attributes.slug,
-      content: item.attributes.content,
-      excerpt: item.attributes.excerpt
-    }
+    return mapArticle(data.data)
   },
 
   async DELETE_ARTICLE({ commit }, articleId) {
@@ -108,4 +86,26 @@ export const actions = {
       }
     })
   }
+}
+
+function mapArticle(item, author) {
+  const article = {
+    id: item.id,
+    title: item.attributes.title,
+    slug: item.attributes.slug,
+    content: item.attributes.content,
+    excerpt: item.attributes.excerpt
+  }
+
+  if (author) {
+    article.author = {
+      id: author.id,
+      login: author.attributes.login,
+      name: author.attributes.name,
+      email: author.attributes.email,
+      url: author.attributes.url,
+      avatarUrl: author.attributes.avatarUrl
+    }
+  }
+  return article
 }
