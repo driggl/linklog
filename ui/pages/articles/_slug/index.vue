@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="article">
     <v-container>
       <h1 class="mb-10">{{ article.title }}</h1>
       <div v-if="article.content" id="article-content" v-html="marked(article.content)"></div>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import marked from 'marked'
 
 export default {
@@ -18,15 +18,12 @@ export default {
     }
   },
 
-  computed: {
-    ...mapGetters('articles', ['findArticle'])
-  },
-
-  created() {
-    this.article = this.findArticle(this.$route.params.slug)
+  async fetch() {
+    this.article = await this.GET_ARTICLE(this.$route.params.slug)
   },
 
   methods: {
+    ...mapActions('articles', ['GET_ARTICLE']),
     marked
   }
 }
