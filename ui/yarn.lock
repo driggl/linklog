@@ -10807,6 +10807,11 @@ vue-client-only@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.0.0.tgz#ddad8d675ee02c761a14229f0e440e219de1da1c"
   integrity sha512-arhk1wtWAfLsJyxGMoEYhoBowM87/i6HLSG2LH/03Yog6i2d9JEN1peMP0Ceis+/n9DxdenGYZZTxbPPJyHciA==
 
+vue-disqus@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/vue-disqus/-/vue-disqus-4.0.0.tgz#f57ff81e25cae997c6e06890c387a6289fb726f6"
+  integrity sha512-HMLVPBAPXQC7Ggpn1YuyzrC7RpdnV2V4gkjwwL/VDul2GEm2MCMaDgf27HJGrhigYhvIPhxRnqcOdMVeSUn5OQ==
+
 vue-eslint-parser@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.1.0.tgz#9cdbcc823e656b087507a1911732b867ac101e83"

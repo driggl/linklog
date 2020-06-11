@@ -4,6 +4,14 @@
       <h1 class="mb-10">{{ article.title }}</h1>
       <div v-if="article.content" id="article-content" v-html="marked(article.content)"></div>
     </v-container>
+    <v-container>
+      <disqus
+        shortname="webdevflow"
+        :identifier="'article-' + article.id + '-v2'"
+        :url="'https://webdevflow.com/articles/' + article.slug + '?comments-version=2'"
+        :title="article.title"
+      />
+    </v-container>
   </div>
 </template>
 
