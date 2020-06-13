@@ -6,7 +6,7 @@
     </v-container>
     <v-container>
       <disqus
-        shortname="webdevflow"
+        shortname="web-dev-flow"
         :identifier="'article-' + article.id"
         :url="'https://webdevflow.com/articles/' + article.slug"
         :title="article.title"
