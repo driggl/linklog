@@ -27,7 +27,8 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/vuetify": "^1.2.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue-disqus": "^4.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
