@@ -7,8 +7,8 @@
     <v-container>
       <disqus
         shortname="webdevflow"
-        :identifier="'article-' + article.id + '-v2'"
-        :url="'https://webdevflow.com/articles/' + article.slug + '?comments-version=2'"
+        :identifier="'article-' + article.id"
+        :url="'https://webdevflow.com/articles/' + article.slug"
         :title="article.title"
       />
     </v-container>
