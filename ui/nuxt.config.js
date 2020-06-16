@@ -72,7 +72,8 @@ export default {
       local: {
         endpoints: {
           login: { url: '/login', method: 'post', propertyName: 'token' },
-          user: { url: '/me', method: 'get', propertyName: 'data' }
+          user: { url: '/me', method: 'get', propertyName: 'data' },
+          logout: false
         }
         // tokenRequired: true,
         // tokenType: 'bearer',
