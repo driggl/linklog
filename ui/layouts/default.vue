@@ -14,12 +14,12 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar fixed app>
-      <v-toolbar-title class="teal--text" v-text="'WebDevFlow'" />
+      <v-toolbar-title class="primary--text" v-text="'WebDevFlow'" />
       <v-spacer />
       <v-btn icon hidden @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-      <v-btn v-if="!$auth.loggedIn" text color="teal" @click.stop="loginFormDisplayed = true">
+      <v-btn v-if="!$auth.loggedIn" text color="primary" @click.stop="loginFormDisplayed = true">
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
@@ -32,7 +32,7 @@
       </div>
     </v-app-bar>
     <v-content>
-      <v-layout column justify-center align-center class="teal white--text py-12 mb-8">
+      <v-layout column justify-center align-center class="primary white--text py-12 mb-8">
         <div class="text-center">
           <h1>A link log for Modern Web Developers community</h1>
           <p>
