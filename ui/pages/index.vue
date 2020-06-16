@@ -2,7 +2,7 @@
   <div>
     <v-container v-if="$auth.loggedIn" class="text-center">
       <v-btn outlined @click="$router.push(`/articles/new`)">
-        <v-icon color="teal">mdi-plus</v-icon>&nbsp;Add article
+        <v-icon color="primary">mdi-plus</v-icon>&nbsp;Add article
       </v-btn>
     </v-container>
     <v-container>
@@ -84,9 +84,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '~/assets/variables.scss';
+
 .article-link {
-  color: #000000;
+  color: $dark1;
   margin-bottom: 10px;
   display: inline-block;
   text-decoration: none;
