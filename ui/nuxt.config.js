@@ -75,10 +75,6 @@ export default {
           user: { url: '/me', method: 'get', propertyName: 'data' },
           logout: false
         }
-        // tokenRequired: true,
-        // tokenType: 'bearer',
-        // globalToken: true,
-        // autoFetchUser: true
       }
     }
   },
