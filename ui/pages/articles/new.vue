@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <v-container>
-      <h1 class="mb-8">Create new article</h1>
-      <article-form :article="article" @save="save" />
-    </v-container>
-  </div>
+  <v-container>
+    <h1 class="mb-8">Create new article</h1>
+    <article-form :article="article" @save="save" />
+  </v-container>
 </template>
 
 <script>

@@ -1,18 +1,15 @@
 <template>
-  <div v-if="article">
-    <v-container>
-      <h1 class="mb-10">{{ article.title }}</h1>
-      <div v-if="article.content" id="article-content" v-html="marked(article.content)"></div>
-    </v-container>
-    <v-container>
-      <disqus
-        shortname="web-dev-flow"
-        :identifier="'article-' + article.id"
-        :url="'https://webdevflow.com/articles/' + article.slug"
-        :title="article.title"
-      />
-    </v-container>
-  </div>
+  <v-container v-if="article">
+    <h1 class="mb-8">{{ article.title }}</h1>
+    <div v-if="article.content" id="article-content" v-html="marked(article.content)"></div>
+
+    <disqus
+      shortname="web-dev-flow"
+      :identifier="'article-' + article.id"
+      :url="'https://webdevflow.com/articles/' + article.slug"
+      :title="article.title"
+    />
+  </v-container>
 </template>
 
 <script>

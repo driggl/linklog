@@ -1,10 +1,8 @@
 <template>
-  <div v-if="!loading">
-    <v-container>
-      <h1 class="mb-8">Article edit</h1>
-      <article-form :article="article" @save="save" />
-    </v-container>
-  </div>
+  <v-container v-if="!loading">
+    <h1 class="mb-8">Article edit</h1>
+    <article-form :article="article" @save="save" />
+  </v-container>
 </template>
 
 <script>
