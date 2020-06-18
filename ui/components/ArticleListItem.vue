@@ -10,7 +10,7 @@
     </v-list-item-content>
     <template v-if="$auth.loggedIn && article.author.id === $auth.user.id">
       <v-list-item-action>
-        <v-btn :to="`/articles/${article.id}/edit`" icon>
+        <v-btn :to="`/articles/${article.slug}/edit`" icon>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
       </v-list-item-action>

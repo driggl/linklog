@@ -22,7 +22,7 @@ export default {
   },
 
   async created() {
-    this.originalArticle = await this.GET_ARTICLE(this.$route.params.id)
+    this.originalArticle = await this.GET_ARTICLE(this.$route.params.slug)
     this.article = { ...this.originalArticle }
     this.loading = false
   },
