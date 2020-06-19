@@ -1,12 +1,17 @@
 <template>
-  <v-list-item :to="`/articles/${article.slug}`">
+  <v-list-item>
     <v-list-item-avatar height="64" width="64">
       <v-img :src="article.author.avatarUrl || '/images/user-placeholder.jpg'" />
     </v-list-item-avatar>
     <v-list-item-content>
-      <v-list-item-title class="article-title">{{ article.title }}</v-list-item-title>
+      <nuxt-link :to="`/articles/${article.slug}`" class="article-title">
+        {{ article.title }}
+      </nuxt-link>
+      <div class="mb-5"><strong>Author: </strong>{{ article.author.login }}</div>
       <div class="article-excerpt" v-html="marked(article.excerpt)"></div>
-      <div class="mt-5"><strong>Author: </strong>{{ article.author.login }}</div>
+      <div>
+        <v-btn :to="`/articles/${article.slug}`" rounded color="primary">Read more</v-btn>
+      </div>
     </v-list-item-content>
     <template v-if="$auth.loggedIn && article.author.id === $auth.user.id">
       <v-list-item-action>
@@ -15,7 +20,7 @@
         </v-btn>
       </v-list-item-action>
       <v-list-item-action>
-        <v-btn icon @click.prevent.stop="$emit('delete')">
+        <v-btn icon @click="$emit('delete')">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-list-item-action>
@@ -44,10 +49,10 @@ export default {
 @import '~/assets/variables.scss';
 
 .article-title {
-  color: $dark1;
-  margin-bottom: 15px !important;
+  color: $dark1 !important;
   font-size: 24px;
   font-weight: bold;
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
