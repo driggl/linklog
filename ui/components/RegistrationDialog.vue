@@ -22,6 +22,8 @@
       label="Password"
       type="password"
     />
+
+    <v-checkbox v-model="form.policyPrivacyAccepted" label="I accept privacy policy" :rules="[rules.required]" />
   </base-dialog-form>
 </template>
 
@@ -46,7 +48,8 @@ export default {
         name: '',
         email: '',
         login: '',
-        password: ''
+        password: '',
+        policyPrivacyAccepted: false
       },
       rules: {
         email: (v) => ValidationUtils.isValidEmail(v) || 'You need to type valid email address',
@@ -57,7 +60,7 @@ export default {
   },
   watch: {
     visible() {
-      Object.assign(this.form, { name: '', email: '', login: '', password: '' })
+      Object.assign(this.form, { name: '', email: '', login: '', password: '', policyPrivacyAccepted: false })
     }
   },
 
