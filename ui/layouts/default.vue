@@ -47,10 +47,18 @@
 
     <login-dialog :visible.sync="loginFormDisplayed" />
     <registration-dialog :visible.sync="registrationFormDisplayed" />
+
+    <v-snackbar :value="!!notification" :timeout="3000" @input="HIDE_NOTIFICATION">
+      {{ notification }}
+      <v-btn color="primary" text @click="HIDE_NOTIFICATION">
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 import LoginDialog from '~/components/LoginDialog'
 import RegistrationDialog from '~/components/RegistrationDialog'
 
@@ -64,6 +72,7 @@ export default {
       drawer: false,
       loginFormDisplayed: false,
       registrationFormDisplayed: false,
+      snackbarText: '',
       items: [
         {
           icon: 'mdi-apps',
@@ -74,10 +83,22 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('notifications', ['notification']),
+    snackbarVisible: {
+      get() {
+        return !!this.snackbarText
+      },
+      set() {
+        this.snackbarText = null
+      }
+    },
     user() {
       const item = this.$auth.user
       return item && { id: item.id, ...item.attributes }
     }
+  },
+  methods: {
+    ...mapMutations('notifications', ['SHOW_NOTIFICATON', 'HIDE_NOTIFICATION'])
   }
 }
 </script>

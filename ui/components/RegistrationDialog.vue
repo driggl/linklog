@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 import * as ValidationUtils from '~/lib/utils/validation-utils'
 import BaseDialogForm from '~/components/base/BaseDialogForm'
 
@@ -62,9 +62,11 @@ export default {
   },
 
   methods: {
+    ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
     ...mapActions('user', ['REGISTER']),
     async register() {
       await this.REGISTER(this.form)
+      this.SHOW_NOTIFICATON(`User "${this.form.login}" successfully registered`)
     }
   }
 }
