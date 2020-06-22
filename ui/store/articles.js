@@ -55,7 +55,7 @@ export const actions = {
 
   async GET_ARTICLE(_, articleId) {
     const { data } = await this.$axios.get(`/articles/${articleId}`)
-    return mapArticle(data.data)
+    return mapArticle(data.data, data.included[0])
   },
 
   async DELETE_ARTICLE({ commit }, articleId) {
