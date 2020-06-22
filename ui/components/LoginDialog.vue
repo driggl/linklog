@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import BaseDialogForm from '~/components/base/BaseDialogForm'
 import * as ValidationUtils from '~/lib/utils/validation-utils'
 
@@ -50,6 +51,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
     async login() {
       const data = {
         data: {
@@ -57,6 +59,7 @@ export default {
         }
       }
       await this.$auth.loginWith('local', { data })
+      this.SHOW_NOTIFICATON(`Logged in as ${this.form.login}`)
     }
   }
 }

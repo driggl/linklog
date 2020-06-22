@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 import ArticleForm from '~/components/ArticleForm'
 
 export default {
@@ -23,9 +23,11 @@ export default {
   },
 
   methods: {
+    ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
     ...mapActions('articles', ['CREATE_ARTICLE']),
     async save() {
       await this.CREATE_ARTICLE(this.article)
+      this.SHOW_NOTIFICATON(`Article "${this.article.title}" successfully created`)
       this.$router.push(`/`)
     }
   }
