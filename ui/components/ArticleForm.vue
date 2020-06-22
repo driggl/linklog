@@ -12,8 +12,9 @@
         :rows="1"
       />
     </div>
-    <div class="text-right">
-      <v-btn :disabled="!valid" type="submit">Save</v-btn>
+    <div class="text-right mt-5">
+      <v-btn to="/" class="mr-3">Cancel</v-btn>
+      <v-btn :disabled="!valid" type="submit" color="primary">Save</v-btn>
     </div>
   </v-form>
 </template>
