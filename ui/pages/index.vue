@@ -22,6 +22,7 @@
       :visible="!!articleToDelete"
       title="Delete article"
       :text="`Are you sure you want to delete article '${articleToDelete.title}'`"
+      :progress="deleteInProgress"
       @cancel="articleToDelete = null"
       @confirm="deleteArticle"
     />
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import ConfirmationDialog from '~/components/ConfirmationDialog'
 import ArticleListItem from '~/components/ArticleListItem'
 
@@ -46,13 +47,15 @@ export default {
   },
   data() {
     return {
-      articleToDelete: null
+      articleToDelete: null,
+      deleteInProgress: false
     }
   },
   computed: {
     ...mapGetters('articles', ['articles'])
   },
   methods: {
+    ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
     ...mapActions('articles', ['FETCH_ARTICLES', 'DELETE_ARTICLE']),
     infiniteScroll($state) {
       setTimeout(async () => {
@@ -65,8 +68,11 @@ export default {
       }, 500)
     },
     async deleteArticle() {
+      this.deleteInProgress = true
       await this.DELETE_ARTICLE(this.articleToDelete.id)
+      this.SHOW_NOTIFICATON(`Article ${this.articleToDelete.title} successfully deleted`)
       this.articleToDelete = null
+      this.deleteInProgress = false
     }
   }
 }
