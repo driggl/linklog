@@ -15,7 +15,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn @click="$emit('cancel')">Cancel</v-btn>
-          <v-btn color="primary" @click="$emit('confirm')">Yes</v-btn>
+          <v-btn color="primary" :loading="progress" @click="$emit('confirm')">Yes</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -26,6 +26,10 @@
 export default {
   props: {
     visible: {
+      type: Boolean,
+      default: false
+    },
+    progress: {
       type: Boolean,
       default: false
     },
