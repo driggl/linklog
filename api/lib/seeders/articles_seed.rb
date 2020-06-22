@@ -9,9 +9,9 @@ module Seeders
         title = Faker::Hipster.sentence
         Article.create(
           title: title,
-          content: Faker::Markdown.sandwich(sentences: 5),
+          content: Array.new(rand(4..10)).map { Faker::Markdown.emphasis }.join(' '),
           user_id: User.pluck(:id).sample,
-          slug: Faker::Hipster.words(number: 4).join('-'),
+          slug: Faker::Hipster.words(number: 4).join('-')
         )
       end
     end
