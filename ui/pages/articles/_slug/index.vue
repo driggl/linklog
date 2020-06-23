@@ -1,8 +1,9 @@
 <template>
   <v-container v-if="article">
-    <v-row>
+    <v-row class="mb-8">
       <v-col :cols="hasWriteAccess ? 10 : 12">
-        <h1 class="mb-8">{{ article.title }}</h1>
+        <h1>{{ article.title }}</h1>
+        <div class="mb-2"><strong>Author: </strong>{{ article.author.login }}</div>
       </v-col>
       <v-col v-if="hasWriteAccess" :cols="2" align="right">
         <v-btn :to="`/articles/${article.slug}/edit`" icon>
@@ -14,7 +15,7 @@
       </v-col>
     </v-row>
 
-    <div v-if="article.content" id="article-content" v-html="marked(article.content)"></div>
+    <div v-if="article.content" id="article-content" class="article-content" v-html="marked(article.content)"></div>
 
     <disqus
       shortname="web-dev-flow"
@@ -40,6 +41,15 @@ import { mapMutations, mapActions } from 'vuex'
 import marked from 'marked'
 import ConfirmationDialog from '~/components/ConfirmationDialog'
 
+const renderer = new marked.Renderer()
+renderer.link = function(href, title, text) {
+  const link = marked.Renderer.prototype.link.apply(this, arguments)
+  return link.replace('<a', "<a target='_blank'")
+}
+
+marked.setOptions({
+  renderer
+})
 export default {
   components: {
     ConfirmationDialog
@@ -76,3 +86,13 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.article-content a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+</style>
