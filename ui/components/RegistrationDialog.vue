@@ -69,6 +69,15 @@ export default {
     ...mapActions('user', ['REGISTER']),
     async register() {
       await this.REGISTER(this.form)
+      const data = {
+        data: {
+          attributes: {
+            login: this.form.login,
+            password: this.form.password
+          }
+        }
+      }
+      await this.$auth.loginWith('local', { data })
       this.SHOW_NOTIFICATON(`User "${this.form.login}" successfully registered`)
     }
   }
