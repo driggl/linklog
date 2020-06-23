@@ -10,7 +10,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <article-form :article="article" @save="save" />
+    <article-form :article="article" :progress="saveInProgress" @save="save" />
 
     <confirmation-dialog
       v-if="showDeleteConfirmation"
@@ -40,6 +40,7 @@ export default {
       article: null,
       loading: true,
       deleteInProgress: false,
+      saveInProgress: false,
       showDeleteConfirmation: false
     }
   },
@@ -54,8 +55,10 @@ export default {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
     ...mapActions('articles', ['UPDATE_ARTICLE', 'GET_ARTICLE', 'DELETE_ARTICLE']),
     async save() {
+      this.saveInProgress = true
       await this.UPDATE_ARTICLE(this.article)
       this.SHOW_NOTIFICATON(`Article "${this.article.title}" successfully updated`)
+      this.saveInProgress = false
       this.$router.push(`/`)
     },
     async deleteArticle() {

@@ -4,6 +4,7 @@ import * as TextUtils from '../lib/utils/text-utils'
 // =================================================
 export const state = () => {
   const store = {
+    nextPageNumber: 1,
     articles: []
   }
 
@@ -24,10 +25,20 @@ export const getters = {
 export const mutations = {
   PUSH_ARTICLES: (state, articles) => {
     state.articles.push(...articles)
+    state.nextPageNumber++
   },
   REMOVE_ARTICLE: (state, articleId) => {
     const index = state.articles.findIndex((article) => article.id === articleId)
     state.articles.splice(index, 1)
+  },
+  UPDATE_ARTICLE_DATA: (state, article) => {
+    Object.assign(
+      state.articles.find((a) => a.id === article.id),
+      article
+    )
+  },
+  PREPEND_ARTICLE: (state, article) => {
+    state.articles.unshift(article)
   }
 }
 
@@ -39,7 +50,7 @@ export const actions = {
     const PAGE_SIZE = 10
     const { data } = await this.$axios.get('/articles', {
       params: {
-        'page[number]': state.articles.length / PAGE_SIZE + 1,
+        'page[number]': state.nextPageNumber,
         'page[size]': PAGE_SIZE
       }
     })
@@ -63,19 +74,22 @@ export const actions = {
     commit('REMOVE_ARTICLE', articleId)
   },
 
-  async CREATE_ARTICLE(_, article) {
+  async CREATE_ARTICLE({ commit, dispatch }, article) {
+    const slug = TextUtils.slugify(article.title)
     await this.$axios.post('/articles', {
       data: {
         attributes: {
           title: article.title,
           content: article.content,
-          slug: TextUtils.slugify(article.title)
+          slug
         }
       }
     })
+    article = await dispatch('GET_ARTICLE', slug)
+    commit('PREPEND_ARTICLE', article)
   },
 
-  async UPDATE_ARTICLE(_, article) {
+  async UPDATE_ARTICLE({ commit, dispatch }, article) {
     await this.$axios.patch(`/articles/${article.id}`, {
       data: {
         attributes: {
@@ -84,6 +98,8 @@ export const actions = {
         }
       }
     })
+    article = await dispatch('GET_ARTICLE', article.id)
+    commit('UPDATE_ARTICLE_DATA', article)
   }
 }
 
