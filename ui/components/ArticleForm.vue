@@ -14,7 +14,7 @@
     </div>
     <div class="text-right mt-5">
       <v-btn to="/" class="mr-3">Cancel</v-btn>
-      <v-btn :disabled="!valid" type="submit" color="primary">Save</v-btn>
+      <v-btn :disabled="!valid" type="submit" color="primary" :loading="progress">Save</v-btn>
     </div>
   </v-form>
 </template>
@@ -27,6 +27,10 @@ export default {
     article: {
       type: Object,
       default: null
+    },
+    progress: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
