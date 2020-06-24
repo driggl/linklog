@@ -14,7 +14,9 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar fixed app>
-      <v-toolbar-title class="primary--text" v-text="'WebDevFlow'" />
+      <nuxt-link to="/" class="no-text-decoration">
+        <v-toolbar-title class="primary--text" v-text="'WebDevFlow'" />
+      </nuxt-link>
       <v-spacer />
       <v-btn icon hidden @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
@@ -102,3 +104,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
+</style>
