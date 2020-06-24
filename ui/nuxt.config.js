@@ -105,5 +105,12 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
-  }
+  },
+
+  serverMiddleware: [
+    {
+      path: '/rss.xml',
+      handler: '~/middleware/rss.js'
+    }
+  ]
 }
