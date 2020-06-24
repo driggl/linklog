@@ -86,13 +86,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.article-content a {
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-</style>

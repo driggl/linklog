@@ -52,11 +52,6 @@ export default {
   color: $dark1 !important;
   font-size: 24px;
   font-weight: bold;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 .article-excerpt {
