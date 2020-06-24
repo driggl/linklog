@@ -110,7 +110,7 @@ export default {
   serverMiddleware: [
     {
       path: '/rss.xml',
-      handler: '~/middleware/rss.js'
+      handler: '~/server-middleware/rss.js'
     }
   ]
 }
