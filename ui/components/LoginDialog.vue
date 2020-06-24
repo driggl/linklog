@@ -6,6 +6,11 @@
     :submit="login"
     @hide="$emit('update:visible', false)"
   >
+    <div class="text-center my-3" slot="header">
+      <v-btn color="secondary" @click="$auth.loginWith('github')">
+        <v-icon>mdi-github</v-icon>&nbsp;&nbsp;Continue with github
+      </v-btn>
+    </div>
     <v-text-field id="login-input" v-model="form.login" :rules="[rules.required]" label="Login" />
     <v-text-field
       id="password-input"

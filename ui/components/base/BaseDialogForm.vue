@@ -8,6 +8,7 @@
 
         <v-form ref="form" v-model="valid" @submit.prevent="handleSubmit">
           <v-card-text class="pt-4">
+            <slot name="header"></slot>
             <div v-if="errorMessage" class="error-message">
               {{ errorMessage }}
             </div>
