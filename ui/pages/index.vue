@@ -74,6 +74,39 @@ export default {
       this.articleToDelete = null
       this.deleteInProgress = false
     }
+  },
+  head: {
+    title: 'Recent Articles',
+    titleTemplate: '%s | WebDevFlow - a Linklog for Modern Web Developers',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Get the hot news from the Modern Web Developers community!',
+        titleTemplate: null
+      },
+      {
+        hid: 'author',
+        name: 'author',
+        content: 'Driggl - https://github.com/driggl'
+      },
+      {
+        property: 'og:title',
+        content: 'Recent articles',
+        vmid: 'og:title'
+      },
+      {
+        property: 'og:description',
+        content: 'Newest content from web Professionals and the Modern web development Community!',
+        vmid: 'og:description'
+      },
+      {
+        property: 'og:image',
+        content: '/home-cover.jpg',
+        vmid: 'og:image'
+      },
+      { property: 'og:type', content: 'website' }
+    ]
   }
 }
 </script>

@@ -83,6 +83,31 @@ export default {
       this.$router.push(`/`)
     },
     marked
+  },
+  head() {
+    if (!this.article) {
+      return {}
+    }
+    return {
+      title: `${this.article.title} | WebDevFlow - A link log for Modern Web Developers`,
+      meta: [
+        { name: 'twitter:site', content: '@webdevflow' },
+        { name: 'twitter:title', content: this.article.title },
+        { name: 'twitter:description', content: this.article.excerpt },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.article.excerpt
+        },
+        { property: 'og:title', content: this.article.title },
+        { property: 'og:description', content: this.article.excerpt },
+        { property: 'og:URL', content: 'https://webdevflow' + this.$route.path },
+        { property: 'og:type', content: 'this.article' },
+        { property: 'fb:app_id', content: process.env.FB_APP_ID },
+        { property: 'og:site_name', content: 'WebDevFlow - A link log for Modern Web Developers' },
+        { name: 'author', content: this.article.author.name || this.article.author.login }
+      ]
+    }
   }
 }
 </script>
