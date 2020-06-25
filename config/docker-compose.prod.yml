@@ -21,7 +21,7 @@ services:
     volumes:
       - certs:/etc/letsencrypt
   api:
-    image: driggl/wdf_api:prod
+    image: driggl/wdf_api:latest
     env_file:
       - .env_api_prod
     command: sh bin/start
