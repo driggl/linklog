@@ -23,7 +23,26 @@
       type="password"
     />
 
-    <v-checkbox v-model="form.policyPrivacyAccepted" label="I accept privacy policy" :rules="[rules.required]" />
+    <v-checkbox v-model="form.policyPrivacyAccepted" :rules="[rules.required]" required
+    >
+      <template v-slot:label>
+        <div>
+          I agree with
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <a
+                target="_blank"
+                href="https://driggl.com/privacy-policy"
+                @click.stop
+                v-on="on"
+                >privacy policy</a
+              >
+            </template>
+            Opens in new window
+          </v-tooltip>
+        </div>
+      </template>
+    </v-checkbox>
   </base-dialog-form>
 </template>
 
