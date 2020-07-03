@@ -64,7 +64,7 @@ export default {
   },
   proxy: {
     '/api': {
-      target: process.env.API_URL || 'https://webdevflow.herokuapp.com',
+      target: process.env.API_URL || 'https://api.webdevflow.com',
       pathRewrite: {
         '^/api': '/'
       }
