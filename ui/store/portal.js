@@ -15,12 +15,14 @@ export const getters = {
 export const mutations = {
   SHOW_LOGIN_FORM: (state) => {
     state.loginFormDisplayed = true
+    state.registrationFormDisplayed = false
   },
   HIDE_LOGIN_FORM: (state) => {
     state.loginFormDisplayed = false
   },
   SHOW_REGISTRATION_FORM: (state) => {
     state.registrationFormDisplayed = true
+    state.loginFormDisplayed = false
   },
   HIDE_REGISTRATION_FORM: (state) => {
     state.registrationFormDisplayed = false

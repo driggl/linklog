@@ -19,6 +19,7 @@
       label="Password"
       type="password"
     />
+    <span slot="footer">Don't have account? <a @click.prevent="SHOW_REGISTRATION_FORM">Register</a></span>
   </base-dialog-form>
 </template>
 
@@ -54,7 +55,7 @@ export default {
 
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
-    ...mapMutations('portal', ['HIDE_LOGIN_FORM']),
+    ...mapMutations('portal', ['HIDE_LOGIN_FORM', 'SHOW_REGISTRATION_FORM']),
     async login() {
       const data = {
         data: {
