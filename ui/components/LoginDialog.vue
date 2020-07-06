@@ -1,12 +1,12 @@
 <template>
   <base-dialog-form
-    :visible="visible"
+    :visible="loginFormDisplayed"
     title="Login"
     submit-title="Log in"
     :submit="login"
-    @hide="$emit('update:visible', false)"
+    @hide="HIDE_LOGIN_FORM"
   >
-    <div class="text-center my-3" slot="header">
+    <div slot="header" class="text-center my-3">
       <v-btn color="secondary" @click="$auth.loginWith('github')">
         <v-icon>mdi-github</v-icon>&nbsp;&nbsp;Continue with github
       </v-btn>
@@ -23,19 +23,13 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import BaseDialogForm from '~/components/base/BaseDialogForm'
 import * as ValidationUtils from '~/lib/utils/validation-utils'
 
 export default {
   components: {
     BaseDialogForm
-  },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false
-    }
   },
   data() {
     return {
@@ -49,6 +43,9 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters('portal', ['loginFormDisplayed'])
+  },
   watch: {
     visible() {
       Object.assign(this.form, { login: '', password: '' })
@@ -57,6 +54,7 @@ export default {
 
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
+    ...mapMutations('portal', ['HIDE_LOGIN_FORM']),
     async login() {
       const data = {
         data: {
