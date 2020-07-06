@@ -36,6 +36,7 @@
         </div>
       </template>
     </v-checkbox>
+    <span slot="footer">Already have account? <a @click.prevent="SHOW_LOGIN_FORM">Log in</a></span>
   </base-dialog-form>
 </template>
 
@@ -75,7 +76,7 @@ export default {
 
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
-    ...mapMutations('portal', ['HIDE_REGISTRATION_FORM']),
+    ...mapMutations('portal', ['HIDE_REGISTRATION_FORM', 'SHOW_LOGIN_FORM']),
     ...mapActions('user', ['REGISTER']),
     async register() {
       await this.REGISTER(this.form)

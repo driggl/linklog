@@ -20,6 +20,9 @@
               {{ submitTitle }}
             </v-btn>
           </v-card-actions>
+          <div v-if="$slots.footer" class="dialog-footer">
+            <slot name="footer"></slot>
+          </div>
         </v-form>
       </v-card>
     </v-dialog>
@@ -81,5 +84,10 @@ export default {
   color: red; /* TODO: use variable */
   margin-top: 14px;
   margin-bottom: 14px;
+}
+
+.dialog-footer {
+  text-align: center;
+  padding-bottom: 20px;
 }
 </style>
