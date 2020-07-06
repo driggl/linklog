@@ -1,10 +1,10 @@
 <template>
   <base-dialog-form
-    :visible="visible"
+    :visible="registrationFormDisplayed"
     title="Registration"
     submit-title="Register"
     :submit="register"
-    @hide="$emit('update:visible', false)"
+    @hide="HIDE_REGISTRATION_FORM"
   >
     <v-text-field id="name-input" v-model="form.name" :rules="[rules.required]" label="Name" type="text" />
     <v-text-field
@@ -23,20 +23,13 @@
       type="password"
     />
 
-    <v-checkbox v-model="form.policyPrivacyAccepted" :rules="[rules.required]" required
-    >
+    <v-checkbox v-model="form.policyPrivacyAccepted" :rules="[rules.required]" required>
       <template v-slot:label>
         <div>
           I agree with
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
-              <a
-                target="_blank"
-                href="https://driggl.com/privacy-policy"
-                @click.stop
-                v-on="on"
-                >privacy policy</a
-              >
+              <a target="_blank" href="https://driggl.com/privacy-policy" @click.stop v-on="on">privacy policy</a>
             </template>
             Opens in new window
           </v-tooltip>
@@ -47,19 +40,13 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import * as ValidationUtils from '~/lib/utils/validation-utils'
 import BaseDialogForm from '~/components/base/BaseDialogForm'
 
 export default {
   components: {
     BaseDialogForm
-  },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false
-    }
   },
   data() {
     return {
@@ -77,6 +64,9 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters('portal', ['registrationFormDisplayed'])
+  },
   watch: {
     visible() {
       Object.assign(this.form, { name: '', email: '', login: '', password: '', policyPrivacyAccepted: false })
@@ -85,6 +75,7 @@ export default {
 
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
+    ...mapMutations('portal', ['HIDE_REGISTRATION_FORM']),
     ...mapActions('user', ['REGISTER']),
     async register() {
       await this.REGISTER(this.form)

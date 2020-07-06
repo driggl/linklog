@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div v-if="$auth.loggedIn" class="text-center">
-      <v-btn text color="primary" to="/articles/new">
+    <div class="text-center">
+      <v-btn text color="primary" @click="onAddArticleClicked">
         <v-icon color="primary">mdi-plus-circle</v-icon>&nbsp;New post
       </v-btn>
     </div>
@@ -57,6 +57,7 @@ export default {
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
     ...mapActions('articles', ['FETCH_ARTICLES', 'DELETE_ARTICLE']),
+    ...mapMutations('portal', ['SHOW_LOGIN_FORM']),
     infiniteScroll($state) {
       setTimeout(async () => {
         const completed = await this.FETCH_ARTICLES()
@@ -73,6 +74,13 @@ export default {
       this.SHOW_NOTIFICATON(`Article ${this.articleToDelete.title} successfully deleted`)
       this.articleToDelete = null
       this.deleteInProgress = false
+    },
+    onAddArticleClicked() {
+      if (this.$auth.loggedIn) {
+        this.$router.push('/articles/new')
+      } else {
+        this.SHOW_LOGIN_FORM()
+      }
     }
   },
   head: {

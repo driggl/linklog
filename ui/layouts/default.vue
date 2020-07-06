@@ -21,11 +21,11 @@
       <v-btn icon hidden @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-      <v-btn v-if="!$auth.loggedIn" text color="primary" @click.stop="loginFormDisplayed = true">
+      <v-btn v-if="!$auth.loggedIn" text color="primary" @click.stop="SHOW_LOGIN_FORM">
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
-      <v-btn v-if="!$auth.loggedIn" color="primary" @click.stop="registrationFormDisplayed = true">
+      <v-btn v-if="!$auth.loggedIn" color="primary" @click.stop="SHOW_REGISTRATION_FORM">
         Register
       </v-btn>
       <div v-if="user">
@@ -47,8 +47,8 @@
     </v-content>
     <v-footer app class="py-5"> Copyright &copy; WebDevFlow {{ new Date().getFullYear() }} </v-footer>
 
-    <login-dialog :visible.sync="loginFormDisplayed" />
-    <registration-dialog :visible.sync="registrationFormDisplayed" />
+    <login-dialog />
+    <registration-dialog />
 
     <v-snackbar :value="!!notification" :timeout="3000" @input="HIDE_NOTIFICATION">
       {{ notification }}
@@ -72,8 +72,6 @@ export default {
   data() {
     return {
       drawer: false,
-      loginFormDisplayed: false,
-      registrationFormDisplayed: false,
       snackbarText: '',
       items: [
         {
@@ -100,7 +98,8 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('notifications', ['SHOW_NOTIFICATON', 'HIDE_NOTIFICATION'])
+    ...mapMutations('notifications', ['SHOW_NOTIFICATON', 'HIDE_NOTIFICATION']),
+    ...mapMutations('portal', ['SHOW_LOGIN_FORM', 'SHOW_REGISTRATION_FORM'])
   }
 }
 </script>
