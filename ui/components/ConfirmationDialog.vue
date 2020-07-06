@@ -6,12 +6,8 @@
           {{ title }}
         </v-card-title>
 
-        <v-card-text class="pt-4">
-          {{ text }}
-        </v-card-text>
-
+        <v-card-text class="pt-4">{{ text }}</v-card-text>
         <v-divider />
-
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn @click="$emit('cancel')">Cancel</v-btn>

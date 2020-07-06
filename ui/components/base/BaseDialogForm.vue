@@ -81,7 +81,7 @@ export default {
 
 <style scoped>
 .error-message {
-  color: red; /* TODO: use variable */
+  color: red;
   margin-top: 14px;
   margin-bottom: 14px;
 }
