@@ -1,4 +1,6 @@
 import * as TextUtils from '../lib/utils/text-utils'
+import * as DateUtils from '../lib/utils/date-utils'
+
 export const state = () => {
   const store = {
     nextPageNumber: 1,
@@ -8,8 +10,11 @@ export const state = () => {
   return store
 }
 
+const today = DateUtils.formatDate(new Date())
 export const getters = {
   articles: (state) => state.articles,
+  todayArticles: (state) => state.articles.filter((article) => article.createdAt === today),
+  olderArticles: (state) => state.articles.filter((article) => article.createdAt !== today),
   findArticle: (state) => (slug) => state.articles.find((article) => article.slug === slug)
 }
 
@@ -97,7 +102,8 @@ function mapArticle(item, author) {
     title: item.attributes.title,
     slug: item.attributes.slug,
     content: item.attributes.content,
-    excerpt: item.attributes.excerpt
+    excerpt: item.attributes.excerpt,
+    createdAt: item.attributes.createdAt
   }
 
   if (author) {
