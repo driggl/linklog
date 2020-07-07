@@ -5,9 +5,20 @@
         <v-icon color="primary">mdi-plus-circle</v-icon>&nbsp;New post
       </v-btn>
     </div>
-    <v-list>
+    <v-list v-if="todayArticles.length">
+      <div v-if="todayArticles.length" class="group-title">Today</div>
       <article-list-item
-        v-for="article in articles"
+        v-for="article in todayArticles"
+        :key="article.id"
+        class="my-10"
+        :article="article"
+        @delete="articleToDelete = article"
+      />
+    </v-list>
+    <v-list>
+      <div v-if="todayArticles.length" class="group-title">Older</div>
+      <article-list-item
+        v-for="article in olderArticles"
         :key="article.id"
         class="my-10"
         :article="article"
@@ -52,7 +63,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('articles', ['articles'])
+    ...mapGetters('articles', ['todayArticles', 'olderArticles'])
   },
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),
@@ -118,3 +129,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.group-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+</style>
