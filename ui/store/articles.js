@@ -1,7 +1,4 @@
 import * as TextUtils from '../lib/utils/text-utils'
-// =================================================
-// State
-// =================================================
 export const state = () => {
   const store = {
     nextPageNumber: 1,
@@ -11,17 +8,11 @@ export const state = () => {
   return store
 }
 
-// =================================================
-// Getters
-// =================================================
 export const getters = {
   articles: (state) => state.articles,
   findArticle: (state) => (slug) => state.articles.find((article) => article.slug === slug)
 }
 
-// =================================================
-// Mutations
-// =================================================
 export const mutations = {
   PUSH_ARTICLES: (state, articles) => {
     state.articles.push(...articles)
@@ -42,9 +33,6 @@ export const mutations = {
   }
 }
 
-// =================================================
-// Actions
-// =================================================
 export const actions = {
   async FETCH_ARTICLES({ commit, state }) {
     const PAGE_SIZE = 10
