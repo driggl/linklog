@@ -11,8 +11,8 @@ describe('ArticleEditPage', () => {
         }
       },
       store: buildStore('articles', {
-        getters: {
-          findArticle: () => () => ({
+        actions: {
+          GET_ARTICLE: () => ({
             title: 'Sample article title',
             content: '# This is title'
           })
@@ -23,7 +23,7 @@ describe('ArticleEditPage', () => {
 
   test('article title is displayed', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
     // expect(wrapper.find('.container h1').text()).toEqual('Sample article title')
   })
 

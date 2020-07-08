@@ -23,7 +23,7 @@ describe('ArticleDetailsPage', () => {
 
   test('article title is displayed', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
     // expect(wrapper.find('.container h1').text()).toEqual('Sample article title')
   })
 

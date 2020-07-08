@@ -1,5 +1,5 @@
 import { mount } from '~/test/utils'
-import BaseDialogForm from '@/components/BaseDialogForm'
+import BaseDialogForm from '@/components/base/BaseDialogForm'
 
 describe('BaseDialogForm', () => {
   let wrapper
@@ -14,6 +14,6 @@ describe('BaseDialogForm', () => {
 
   test('Inputs are empty on start', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
   })
 })

@@ -59,3 +59,9 @@ export function buildStores(stores) {
 
   return new Vuex.Store({ modules })
 }
+
+export function createApp() {
+  const app = document.createElement('div')
+  app.setAttribute('data-app', true)
+  document.body.append(app)
+}

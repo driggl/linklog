@@ -14,6 +14,6 @@ describe('ConfirmationDialog', () => {
 
   test('Inputs are empty on start', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
   })
 })

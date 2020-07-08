@@ -23,7 +23,7 @@ describe('NewArticlePage', () => {
 
   test('article title is displayed', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
   })
 
   test('article content is displayed', () => {

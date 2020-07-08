@@ -33,6 +33,6 @@ describe('ArticleListItem', () => {
 
   test('Is vue instance', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
   })
 })

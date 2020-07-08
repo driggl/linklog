@@ -53,7 +53,7 @@ describe('Main page', () => {
 
   test('articles are displayed', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
     // expect(wrapper.text()).toContain('First sample article')
     // expect(wrapper.text()).toContain('Second sample article')
   })

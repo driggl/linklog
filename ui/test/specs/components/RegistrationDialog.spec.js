@@ -1,7 +1,8 @@
-import { buildStores, mount } from '~/test/utils'
+import { buildStores, mount, createApp } from '~/test/utils'
 import RegistrationDialog from '@/components/RegistrationDialog'
 
 describe('RegistrationDialog', () => {
+  createApp()
   let wrapper
   function mountComponent() {
     wrapper = mount(RegistrationDialog, {
@@ -13,7 +14,8 @@ describe('RegistrationDialog', () => {
         {
           name: 'portal',
           getters: {
-            loginFormDisplayed: () => true
+            loginFormDisplayed: () => true,
+            registrationFormDisplayed: () => true
           },
           mutations: {
             HIDE_LOGIN_FORM: () => {},
@@ -32,6 +34,6 @@ describe('RegistrationDialog', () => {
 
   test('Inputs are empty on start', () => {
     mountComponent()
-    expect(wrapper.isVueInstance()).toEqual(true)
+    expect(wrapper.exists()).toEqual(true)
   })
 })

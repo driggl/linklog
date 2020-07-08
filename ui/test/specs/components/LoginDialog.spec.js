@@ -1,7 +1,8 @@
-import { buildStores, mount } from '~/test/utils'
+import { buildStores, createApp, mount } from '~/test/utils'
 import LoginDialog from '@/components/LoginDialog'
 
 describe('LoginDialog', () => {
+  createApp()
   let wrapper
   function mountComponent() {
     wrapper = mount(LoginDialog, {
