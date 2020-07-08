@@ -1,7 +1,7 @@
 <template>
   <v-form v-model="valid" @submit.prevent="$emit('save')">
     <div>
-      <v-text-field v-model="article.title" label="Title" :rules="[rules.required]" />
+      <v-text-field ref="title-input" v-model="article.title" label="Title" :rules="[rules.required]" />
     </div>
     <div>
       <v-textarea

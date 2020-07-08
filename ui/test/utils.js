@@ -65,3 +65,7 @@ export function createApp() {
   app.setAttribute('data-app', true)
   document.body.append(app)
 }
+
+export function delay(time = 0) {
+  return new Promise((resolve) => setTimeout(() => resolve(), time))
+}

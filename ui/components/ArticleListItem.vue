@@ -32,6 +32,7 @@
 import marked from 'marked'
 
 export default {
+  name: 'ArticleListItem',
   props: {
     article: {
       type: Object,

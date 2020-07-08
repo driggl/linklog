@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'ConfirmationDialog',
   props: {
     visible: {
       type: Boolean,
