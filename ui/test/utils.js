@@ -34,7 +34,7 @@ export function mount(Component, config) {
 
   return VueTestUtils.mount(Component, {
     vuetify: new Vuetify({ theme: {} }),
-    stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only'],
+    stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only', ...(config.stubs || [])],
     localVue,
     sync: false,
     ...config
