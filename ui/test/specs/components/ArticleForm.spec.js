@@ -6,7 +6,10 @@ describe('ArticleForm', () => {
   function mountComponent() {
     wrapper = mount(ArticleForm, {
       propsData: {
-        article: {},
+        article: {
+          title: '',
+          content: ''
+        },
         progress: false
       }
     })

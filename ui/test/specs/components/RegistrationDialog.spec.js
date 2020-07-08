@@ -1,4 +1,4 @@
-import { mount } from '~/test/utils'
+import { buildStores, mount } from '~/test/utils'
 import RegistrationDialog from '@/components/RegistrationDialog'
 
 describe('RegistrationDialog', () => {
@@ -8,7 +8,25 @@ describe('RegistrationDialog', () => {
       propsData: {
         title: 'ABC',
         text: 'XYZ'
-      }
+      },
+      store: buildStores([
+        {
+          name: 'portal',
+          getters: {
+            loginFormDisplayed: () => true
+          },
+          mutations: {
+            HIDE_LOGIN_FORM: () => {},
+            SHOW_REGISTRATION_FORM: () => {}
+          }
+        },
+        {
+          name: 'notifications',
+          mutations: {
+            SHOW_NOTIFICATON: () => {}
+          }
+        }
+      ])
     })
   }
 

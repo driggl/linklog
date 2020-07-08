@@ -63,7 +63,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('articles', ['todayArticles', 'olderArticles'])
+    ...mapGetters('articles', ['todayArticles', 'olderArticles', 'articles'])
   },
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),

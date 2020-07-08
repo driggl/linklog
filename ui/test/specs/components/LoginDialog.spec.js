@@ -1,4 +1,4 @@
-import { mount } from '~/test/utils'
+import { buildStores, mount } from '~/test/utils'
 import LoginDialog from '@/components/LoginDialog'
 
 describe('LoginDialog', () => {
@@ -7,7 +7,25 @@ describe('LoginDialog', () => {
     wrapper = mount(LoginDialog, {
       propsData: {
         visible: true
-      }
+      },
+      store: buildStores([
+        {
+          name: 'portal',
+          getters: {
+            loginFormDisplayed: () => true
+          },
+          mutations: {
+            HIDE_LOGIN_FORM: () => {},
+            SHOW_REGISTRATION_FORM: () => {}
+          }
+        },
+        {
+          name: 'notifications',
+          mutations: {
+            SHOW_NOTIFICATON: () => {}
+          }
+        }
+      ])
     })
   }
 
