@@ -77,9 +77,11 @@ RSpec.describe TokensController, type: :controller do
         }
       end
 
+      let(:access_token) { { access_token: 'validaccesstoken', type: 'Bearer' } }
+
       before do
         allow_any_instance_of(Octokit::Client).
-          to receive(:exchange_code_for_token).and_return('validaccesstoken')
+          to receive(:exchange_code_for_token).and_return(access_token)
 
         allow_any_instance_of(Octokit::Client).
           to receive(:user).and_return(user_data)

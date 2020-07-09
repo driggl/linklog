@@ -15,7 +15,7 @@ RSpec.describe ArticlesController do
       create_list :article, 2
       subject
       Article.recent.each_with_index do |article, index|
-        expect(json_data[index]['attributes']).to eq(
+        expect(json_data[index]['attributes']).to include(
           'title' => article.title,
           'content' => article.content,
           'parsedContent' => article.parsed_content,
@@ -53,7 +53,7 @@ RSpec.describe ArticlesController do
 
     it 'should return proper json' do
       subject
-      expect(json_data['attributes']).to eq(
+      expect(json_data['attributes']).to include(
         'title' => article.title,
         'content' => article.content,
         'parsedContent' => article.parsed_content,
