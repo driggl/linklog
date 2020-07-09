@@ -1,36 +1,20 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" fixed app>
-      <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-app-bar fixed app>
       <nuxt-link to="/" class="no-text-decoration">
         <v-toolbar-title class="primary--text" v-text="'WebDevFlow'" />
       </nuxt-link>
       <v-spacer />
-      <v-btn icon hidden @click.stop="drawer = !drawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-      <v-btn v-if="!$auth.loggedIn" text color="primary" @click.stop="SHOW_LOGIN_FORM">
+      <v-btn v-if="!$auth.loggedIn" ref="login-button" text color="primary" @click.stop="SHOW_LOGIN_FORM">
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
-      <v-btn v-if="!$auth.loggedIn" color="primary" @click.stop="SHOW_REGISTRATION_FORM">
+      <v-btn v-if="!$auth.loggedIn" ref="register-button" color="primary" @click.stop="SHOW_REGISTRATION_FORM">
         Register
       </v-btn>
       <div v-if="user">
         Logged in as: {{ user.login }}&nbsp;&nbsp;&nbsp;
-        <v-btn @click.stop="$auth.logout()">Logout</v-btn>
+        <v-btn ref="logout-button" @click.stop="$auth.logout()">Logout</v-btn>
       </div>
     </v-app-bar>
     <v-content>
@@ -69,32 +53,10 @@ export default {
     LoginDialog,
     RegistrationDialog
   },
-  data() {
-    return {
-      drawer: false,
-      snackbarText: '',
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        }
-      ]
-    }
-  },
   computed: {
     ...mapGetters('notifications', ['notification']),
-    snackbarVisible: {
-      get() {
-        return !!this.snackbarText
-      },
-      set() {
-        this.snackbarText = null
-      }
-    },
     user() {
-      const item = this.$auth.user
-      return item && { id: item.id, ...item.attributes }
+      return this.$auth.user && { id: this.$auth.user.id, ...this.$auth.user.attributes }
     }
   },
   methods: {

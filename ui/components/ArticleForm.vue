@@ -23,6 +23,7 @@
 import * as ValidationUtils from '~/lib/utils/validation-utils'
 
 export default {
+  name: 'ArticleForm',
   props: {
     article: {
       type: Object,
