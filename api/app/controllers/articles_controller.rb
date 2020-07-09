@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   end
 
   def relation
-    Article.recent
+    Article.includes(:user).recent
   end
 
   def included

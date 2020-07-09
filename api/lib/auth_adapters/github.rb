@@ -47,7 +47,9 @@ module AuthAdapters
         if User.exists?(login: user_data[:login])
           User.find_by(login: user_data[:login])
         else
-          User.create(user_data.merge(provider: 'github'))
+          u = User.new(user_data.merge(provider: 'github'))
+          u.build_access_token
+          u.save
         end
     end
 
