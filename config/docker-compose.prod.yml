@@ -5,6 +5,8 @@ volumes:
     external: false
 
 services:
+  memcached:
+    image: memcached:alpine
   webserver:
     build:
       context: ./nginx
