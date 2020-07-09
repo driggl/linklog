@@ -38,7 +38,7 @@ module AuthAdapters
     def user_data
       @user_data ||=
         Octokit::Client.new(
-          access_token: token
+          access_token: token[:access_token]
         ).user.to_h.slice(:login, :avatar_url, :url, :name)
     end
 
