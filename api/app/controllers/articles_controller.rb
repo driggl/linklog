@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     options = { meta: pagination_meta, links: pagination_links, include: included }
-    retunr unless stale?(last_modified: paginated[:records].map(&:updated_at).max, public: true)
+    return unless stale?(last_modified: paginated[:records].map(&:updated_at).max, public: true)
 
     render json: serializer.new(paginated[:records], options)
   end
