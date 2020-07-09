@@ -6,17 +6,17 @@
     :submit="register"
     @hide="HIDE_REGISTRATION_FORM"
   >
-    <v-text-field id="name-input" v-model="form.name" :rules="[rules.required]" label="Name" type="text" />
+    <v-text-field ref="name-input" v-model="form.name" :rules="[rules.required]" label="Name" type="text" />
     <v-text-field
-      id="email-input"
+      ref="email-input"
       v-model="form.email"
       :rules="[rules.required, rules.email]"
       label="Email"
       type="email"
     />
-    <v-text-field id="login-input" v-model="form.login" :rules="[rules.required]" label="Login" />
+    <v-text-field ref="login-input" v-model="form.login" :rules="[rules.required]" label="Login" />
     <v-text-field
-      id="password-input"
+      ref="password-input"
       v-model="form.password"
       :rules="[rules.required, rules.minLength]"
       label="Password"

@@ -3,6 +3,7 @@ const ARTICLES = [
     id: 1,
     title: 'First sample article',
     slug: 'first-sample-article',
+    excerpt: 'This is sample content',
     content: 'This is sample content\n\n# Header 1\n\n## Header 2',
     author: {
       id: 11,

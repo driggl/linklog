@@ -4,23 +4,23 @@
       <v-img :src="article.author.avatarUrl || '/images/user-placeholder.jpg'" />
     </v-list-item-avatar>
     <v-list-item-content>
-      <nuxt-link :to="`/articles/${article.slug}`" class="article-title">
+      <nuxt-link ref="article-title" :to="`/articles/${article.slug}`" class="article-title">
         {{ article.title }}
       </nuxt-link>
       <div class="mb-5"><strong>Author: </strong>{{ article.author.login }}</div>
       <div class="article-excerpt" v-html="marked(article.excerpt)"></div>
       <div>
-        <v-btn :to="`/articles/${article.slug}`" rounded color="primary">Read more</v-btn>
+        <v-btn ref="read-more-button" :to="`/articles/${article.slug}`" rounded color="primary">Read more</v-btn>
       </div>
     </v-list-item-content>
     <template v-if="$auth.loggedIn && article.author.id === $auth.user.id">
       <v-list-item-action>
-        <v-btn :to="`/articles/${article.slug}/edit`" icon>
+        <v-btn ref="edit-button" :to="`/articles/${article.slug}/edit`" icon>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
       </v-list-item-action>
       <v-list-item-action>
-        <v-btn icon @click="$emit('delete')">
+        <v-btn ref="delete-button" icon @click="$emit('delete')">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-list-item-action>

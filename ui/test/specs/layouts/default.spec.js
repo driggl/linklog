@@ -1,6 +1,7 @@
 import sinon from 'sinon'
 import { buildStores, mount } from '~/test/utils'
 import DefaultLayout from '@/layouts/default.vue'
+import { getUser } from '~/test/fixtures/user'
 
 describe('Default layout', () => {
   let wrapper
@@ -37,7 +38,6 @@ describe('Default layout', () => {
       ])
     })
   }
-  const USER = { id: 321, attributes: { login: 'xjohn' } }
 
   test('Login and registration button are displayed only for not logged in user', () => {
     const SHOW_LOGIN_FORM = sinon.stub()
@@ -53,7 +53,7 @@ describe('Default layout', () => {
     expect(wrapper.findComponent({ ref: 'login-button' }).exists()).toEqual(true)
     expect(wrapper.findComponent({ ref: 'register-button' }).exists()).toEqual(true)
 
-    mountComponent({ user: USER })
+    mountComponent({ user: getUser() })
     expect(wrapper.findComponent({ ref: 'login-button' }).exists()).toEqual(false)
     expect(wrapper.findComponent({ ref: 'register-button' }).exists()).toEqual(false)
   })
@@ -63,7 +63,7 @@ describe('Default layout', () => {
     expect(wrapper.findComponent({ ref: 'logout-button' }).exists()).toEqual(false)
     expect(wrapper.text()).not.toContain('Logged in as')
 
-    mountComponent({ user: USER })
+    mountComponent({ user: getUser() })
     expect(wrapper.findComponent({ ref: 'logout-button' }).exists()).toEqual(true)
     expect(wrapper.text()).toContain('Logged in as: xjohn')
   })

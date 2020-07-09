@@ -7,13 +7,13 @@
     @hide="HIDE_LOGIN_FORM"
   >
     <div slot="header" class="text-center my-3">
-      <v-btn color="secondary" @click="$auth.loginWith('github')">
+      <v-btn ref="github-button" color="secondary" @click="$auth.loginWith('github')">
         <v-icon>mdi-github</v-icon>&nbsp;&nbsp;Continue with github
       </v-btn>
     </div>
-    <v-text-field id="login-input" v-model="form.login" :rules="[rules.required]" label="Login" />
+    <v-text-field ref="login-input" v-model="form.login" :rules="[rules.required]" label="Login" />
     <v-text-field
-      id="password-input"
+      ref="password-input"
       v-model="form.password"
       :rules="[rules.required, rules.minLength]"
       label="Password"

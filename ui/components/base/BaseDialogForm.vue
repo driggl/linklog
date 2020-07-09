@@ -16,7 +16,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" :disabled="!valid" type="submit" :loading="submitting">
+            <v-btn ref="submit-button" color="primary" :disabled="!valid" type="submit" :loading="submitting">
               {{ submitTitle }}
             </v-btn>
           </v-card-actions>
@@ -31,6 +31,7 @@
 
 <script>
 export default {
+  name: 'BaseDialogForm',
   props: {
     visible: {
       type: Boolean,

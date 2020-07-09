@@ -5,6 +5,7 @@
     </div>
     <div>
       <v-textarea
+        ref="content-input"
         v-model="article.content"
         label="Content"
         :rules="[rules.required, rules.minLength5]"
@@ -13,8 +14,8 @@
       />
     </div>
     <div class="text-right mt-5">
-      <v-btn to="/" class="mr-3">Cancel</v-btn>
-      <v-btn :disabled="!valid" type="submit" color="primary" :loading="progress">Save</v-btn>
+      <v-btn ref="cancel-button" to="/" class="mr-3">Cancel</v-btn>
+      <v-btn ref="save-button" :disabled="!valid" type="submit" color="primary" :loading="progress">Save</v-btn>
     </div>
   </v-form>
 </template>
