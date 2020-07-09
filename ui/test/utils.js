@@ -34,7 +34,7 @@ export function mount(Component, config) {
 
   return VueTestUtils.mount(Component, {
     vuetify: new Vuetify({ theme: {} }),
-    stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only'],
+    stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only', ...(config.stubs || [])],
     localVue,
     sync: false,
     ...config
@@ -58,4 +58,14 @@ export function buildStores(stores) {
   })
 
   return new Vuex.Store({ modules })
+}
+
+export function createApp() {
+  const app = document.createElement('div')
+  app.setAttribute('data-app', true)
+  document.body.append(app)
+}
+
+export function delay(time = 0) {
+  return new Promise((resolve) => setTimeout(() => resolve(), time))
 }

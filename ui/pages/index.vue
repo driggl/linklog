@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="text-center">
-      <v-btn text color="primary" @click="onAddArticleClicked">
+      <v-btn ref="new-post-button" text color="primary" @click="onAddArticleClicked">
         <v-icon color="primary">mdi-plus-circle</v-icon>&nbsp;New post
       </v-btn>
     </div>
@@ -63,7 +63,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('articles', ['todayArticles', 'olderArticles'])
+    ...mapGetters('articles', ['todayArticles', 'olderArticles', 'articles'])
   },
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON']),

@@ -1,12 +1,12 @@
 import sinon from 'sinon'
 import { buildStores, createApp, mount } from '~/test/utils'
-import LoginDialog from '@/components/LoginDialog'
+import RegistrationDialog from '@/components/RegistrationDialog'
 
-describe('LoginDialog', () => {
+describe('RegistrationDialog', () => {
   createApp()
   let wrapper
   function mountComponent(config = {}) {
-    wrapper = mount(LoginDialog, {
+    wrapper = mount(RegistrationDialog, {
       propsData: {
         visible: true
       },
@@ -19,10 +19,10 @@ describe('LoginDialog', () => {
         {
           name: 'portal',
           getters: {
-            loginFormDisplayed: () => true
+            registrationFormDisplayed: () => true
           },
           mutations: {
-            HIDE_LOGIN_FORM: config.HIDE_LOGIN_FORM || (() => {}),
+            HIDE_REGISTRATION_FORM: config.HIDE_REGISTRATION_FORM || (() => {}),
             SHOW_REGISTRATION_FORM: config.SHOW_REGISTRATION_FORM || (() => {})
           }
         },
@@ -37,29 +37,25 @@ describe('LoginDialog', () => {
   }
 
   test('Uses BaseDialogForm', () => {
-    const HIDE_LOGIN_FORM = sinon.stub()
+    const HIDE_REGISTRATION_FORM = sinon.stub()
 
-    mountComponent({ HIDE_LOGIN_FORM })
+    mountComponent({ HIDE_REGISTRATION_FORM })
     expect(wrapper.findComponent({ name: 'BaseDialogForm' }).props()).toMatchObject({
-      submitTitle: 'Log in',
-      title: 'Login',
+      submitTitle: 'Register',
+      title: 'Registration',
       visible: true
     })
 
     wrapper.findComponent({ name: 'BaseDialogForm' }).vm.$emit('hide')
-    sinon.assert.calledOnce(HIDE_LOGIN_FORM)
+    sinon.assert.calledOnce(HIDE_REGISTRATION_FORM)
   })
 
-  test('Contains github authentication button', () => {
-    const LOGIN = sinon.stub()
-    mountComponent({ LOGIN })
-
-    const githubButton = wrapper.findComponent({ ref: 'github-button' })
-    expect(githubButton.props()).toMatchObject({ color: 'secondary' })
-    expect(githubButton.text()).toContain('Continue with github')
-
-    githubButton.trigger('click')
-    sinon.assert.calledWithExactly(LOGIN, 'github')
+  test('Contains input field for name', () => {
+    mountComponent()
+    expect(wrapper.findComponent({ ref: 'name-input' }).props()).toMatchObject({
+      value: '',
+      label: 'Name'
+    })
   })
 
   test('Contains input field for login', () => {
@@ -74,7 +70,8 @@ describe('LoginDialog', () => {
     mountComponent()
     expect(wrapper.findComponent({ ref: 'password-input' }).props()).toMatchObject({
       value: '',
-      label: 'Password'
+      label: 'Password',
+      type: 'password'
     })
   })
 })

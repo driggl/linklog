@@ -6,10 +6,10 @@
         <div class="mb-2"><strong>Author: </strong>{{ article.author.login }}</div>
       </v-col>
       <v-col v-if="hasWriteAccess" :cols="2" align="right">
-        <v-btn :to="`/articles/${article.slug}/edit`" icon>
+        <v-btn ref="edit-article-button" :to="`/articles/${article.slug}/edit`" icon>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
-        <v-btn icon @click="showDeleteConfirmation = true">
+        <v-btn ref="delete-article-button" icon @click="showDeleteConfirmation = true">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-col>
