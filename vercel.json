@@ -26,7 +26,10 @@
   },
   "build": {
     "env": {
-      "API_URL": "@wdf-api-url"
+      "API_URL": "@wdf-api-url",
+      "GITHUB_ID": "@wdf-github-id",
+      "GITHUB_SECRET": "@wdf-github-secret",
+      "GITHUB_REDIRECT_URI": "@wdf-github-redirect-uri"
     }
   }
 }
