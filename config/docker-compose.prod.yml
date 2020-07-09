@@ -7,6 +7,7 @@ volumes:
 services:
   memcached:
     image: memcached:alpine
+    command: "memcached -m 500 -I 2m"
   webserver:
     build:
       context: ./nginx
