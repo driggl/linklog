@@ -1,0 +1,21 @@
+name: UI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: --cwd ui install
+    - name: Test
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: --cwd ui test
