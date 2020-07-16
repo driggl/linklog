@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <div class="text-center">
-      <v-btn ref="new-post-button" text color="primary" @click="onAddArticleClicked">
-        <v-icon color="primary">mdi-plus-circle</v-icon>&nbsp;New post
+      <v-btn ref="new-post-button" class="add-post-button" text x-large color="primary" @click="onAddArticleClicked">
+        <v-icon color="primary" large>mdi-plus-circle</v-icon>&nbsp;New post
       </v-btn>
     </div>
     <v-list v-if="todayArticles.length">
@@ -133,6 +133,11 @@ export default {
 <style lang="scss" scoped>
 .group-title {
   font-size: 22px;
+  font-weight: bold;
+}
+
+.add-post-button {
+  font-size: 18px;
   font-weight: bold;
 }
 </style>
