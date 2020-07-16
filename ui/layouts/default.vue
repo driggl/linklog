@@ -40,6 +40,7 @@
         Close
       </v-btn>
     </v-snackbar>
+    <cookies-banner v-if="!cookiesAccepted" @accepted="cookiesAccepted = true" />
   </v-app>
 </template>
 
@@ -47,17 +48,27 @@
 import { mapGetters, mapMutations } from 'vuex'
 import LoginDialog from '~/components/LoginDialog'
 import RegistrationDialog from '~/components/RegistrationDialog'
+import CookiesBanner from '~/components/CookiesBanner'
 
 export default {
   components: {
     LoginDialog,
-    RegistrationDialog
+    RegistrationDialog,
+    CookiesBanner
+  },
+  data() {
+    return {
+      cookiesAccepted: false
+    }
   },
   computed: {
     ...mapGetters('notifications', ['notification']),
     user() {
       return this.$auth.user && { id: this.$auth.user.id, ...this.$auth.user.attributes }
     }
+  },
+  created() {
+    this.cookiesAccepted = this.$cookies.get('cookiesAccepted')
   },
   methods: {
     ...mapMutations('notifications', ['SHOW_NOTIFICATON', 'HIDE_NOTIFICATION']),
