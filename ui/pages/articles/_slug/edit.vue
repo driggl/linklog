@@ -46,7 +46,7 @@ export default {
   },
 
   async created() {
-    this.originalArticle = await this.GET_ARTICLE(this.$route.params.slug)
+    this.originalArticle = await this.GET_ARTICLE(this.$route.params.slug, true)
     this.article = { ...this.originalArticle }
     this.loading = false
   },

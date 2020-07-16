@@ -57,8 +57,14 @@ export const actions = {
     return !data.links.next
   },
 
-  async GET_ARTICLE(_, articleId) {
-    const { data } = await this.$axios.get(`/articles/${articleId}`)
+  async GET_ARTICLE({ getters }, slug, forceFetch) {
+    if (!forceFetch) {
+      const article = getters.articles.find((article) => article.slug === slug)
+      if (article) {
+        return article
+      }
+    }
+    const { data } = await this.$axios.get(`/articles/${slug}`)
     return mapArticle(data.data, data.included[0])
   },
 
