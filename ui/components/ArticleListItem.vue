@@ -10,7 +10,7 @@
       <div class="mb-5"><strong>Author: </strong>{{ article.author.login }}</div>
       <div class="article-excerpt" v-html="marked(article.excerpt)"></div>
       <div>
-        <v-btn ref="read-more-button" :to="`/articles/${article.slug}`" rounded color="primary">Read more</v-btn>
+        <v-btn ref="read-more-button" :to="`/articles/${article.slug}`" color="primary">Read more</v-btn>
       </div>
     </v-list-item-content>
     <template v-if="$auth.loggedIn && article.author.id === $auth.user.id">
