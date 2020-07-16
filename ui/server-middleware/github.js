@@ -11,6 +11,12 @@ export default async function(req, res) {
     })
     res.end('/')
   } catch (e) {
-    res.end('/')
+    let message = ''
+    if (e.response && e.response.data) {
+      message += JSON.stringify(e.response.data)
+    } else {
+      message += e.toString()
+    }
+    res.end(message)
   }
 }
