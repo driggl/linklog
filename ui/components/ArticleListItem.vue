@@ -56,7 +56,7 @@ export default {
 }
 
 .article-excerpt {
-  line-height: 1.5;
+  line-height: 1.5 !important;
   font-weight: 300;
 }
 </style>
