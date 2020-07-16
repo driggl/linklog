@@ -7,7 +7,8 @@ import * as VueTestUtils from '@vue/test-utils'
 Vue.use(Vuetify)
 Vue.use(Vuex)
 
-export function shallow(Component, config) {
+export function shallow(Component, configData = {}) {
+  const { mocks, ...config } = configData
   const localVue = VueTestUtils.createLocalVue()
   localVue.use(Vuetify)
   localVue.use(Vuex)
@@ -17,6 +18,13 @@ export function shallow(Component, config) {
 
   return VueTestUtils.shallowMount(Component, {
     vuetify: new Vuetify({ theme: {} }),
+    mocks: {
+      $cookies: {
+        get: () => {},
+        set: () => {}
+      },
+      ...mocks
+    },
     stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only'],
     localVue,
     sync: false,
@@ -24,7 +32,8 @@ export function shallow(Component, config) {
   })
 }
 
-export function mount(Component, config) {
+export function mount(Component, configData = {}) {
+  const { mocks, ...config } = configData
   const localVue = VueTestUtils.createLocalVue()
   localVue.use(Vuetify)
   localVue.use(Vuex)
@@ -34,6 +43,13 @@ export function mount(Component, config) {
 
   return VueTestUtils.mount(Component, {
     vuetify: new Vuetify({ theme: {} }),
+    mocks: {
+      $cookies: {
+        get: () => {},
+        set: () => {}
+      },
+      ...mocks
+    },
     stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only', ...(config.stubs || [])],
     localVue,
     sync: false,
