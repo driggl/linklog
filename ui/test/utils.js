@@ -23,6 +23,9 @@ export function shallow(Component, configData = {}) {
         get: () => {},
         set: () => {}
       },
+      $route: {
+        query: {}
+      },
       ...mocks
     },
     stubs: ['Nuxt', 'router-link', 'nuxt-link', 'infinite-loading', 'client-only'],
@@ -47,6 +50,9 @@ export function mount(Component, configData = {}) {
       $cookies: {
         get: () => {},
         set: () => {}
+      },
+      $route: {
+        query: {}
       },
       ...mocks
     },

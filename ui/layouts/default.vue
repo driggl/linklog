@@ -67,7 +67,13 @@ export default {
       return this.$auth.user && { id: this.$auth.user.id, ...this.$auth.user.attributes }
     }
   },
-  created() {
+  async created() {
+    const token = this.$route.query.token
+    if (token) {
+      this.$auth.setToken('local', `Bearer ${token}`)
+      await this.$auth.fetchUser()
+      this.$router.replace('/')
+    }
     this.cookiesAccepted = this.$cookies.get('cookiesAccepted')
   },
   methods: {
