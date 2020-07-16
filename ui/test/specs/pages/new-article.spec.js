@@ -34,7 +34,8 @@ describe('NewArticlePage', () => {
     await mountComponent()
     expect(wrapper.findComponent({ name: 'ArticleForm' }).props()).toEqual({
       article: { title: '', content: '' },
-      progress: false
+      progress: false,
+      error: null
     })
   })
 

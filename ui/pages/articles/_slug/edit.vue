@@ -10,7 +10,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <article-form :article="article" :progress="saveInProgress" @save="save" />
+    <article-form :article="article" :error="error" :progress="saveInProgress" @save="save" />
 
     <confirmation-dialog
       v-if="showDeleteConfirmation"
@@ -28,6 +28,7 @@
 import { mapMutations, mapActions } from 'vuex'
 import ConfirmationDialog from '~/components/ConfirmationDialog'
 import ArticleForm from '~/components/ArticleForm'
+import * as ErrorUtils from '~/lib/utils/error-utils'
 
 export default {
   components: {
@@ -41,7 +42,8 @@ export default {
       loading: true,
       deleteInProgress: false,
       saveInProgress: false,
-      showDeleteConfirmation: false
+      showDeleteConfirmation: false,
+      error: null
     }
   },
 
@@ -56,10 +58,16 @@ export default {
     ...mapActions('articles', ['UPDATE_ARTICLE', 'GET_ARTICLE', 'DELETE_ARTICLE']),
     async save() {
       this.saveInProgress = true
-      await this.UPDATE_ARTICLE(this.article)
-      this.SHOW_NOTIFICATON(`Article "${this.article.title}" successfully updated`)
-      this.saveInProgress = false
-      this.$router.push(`/`)
+      try {
+        await this.UPDATE_ARTICLE(this.article)
+        this.SHOW_NOTIFICATON(`Article "${this.article.title}" successfully updated`)
+        this.saveInProgress = false
+        this.$router.push(`/`)
+      } catch (e) {
+        this.SHOW_NOTIFICATON('Something went wrong during save')
+        this.error = ErrorUtils.calculateErrorMessage(e)
+        this.saveInProgress = false
+      }
     },
     async deleteArticle() {
       this.deleteInProgress = true
