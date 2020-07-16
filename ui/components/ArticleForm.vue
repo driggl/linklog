@@ -1,5 +1,6 @@
 <template>
   <v-form v-model="valid" @submit.prevent="$emit('save')">
+    <div v-if="error" class="error-message">{{ error }}</div>
     <div>
       <v-text-field ref="title-input" v-model="article.title" label="Title" :rules="[rules.required]" />
     </div>
@@ -33,6 +34,10 @@ export default {
     progress: {
       type: Boolean,
       default: false
+    },
+    error: {
+      type: String,
+      default: null
     }
   },
   data() {
@@ -46,3 +51,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.error-message {
+  color: red;
+  margin-top: 15px;
+  margin-bottom: 45px;
+}
+</style>

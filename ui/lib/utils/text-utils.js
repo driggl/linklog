@@ -17,3 +17,7 @@ export function slugify(str) {
 
   return str
 }
+
+export function capitalize(string) {
+  return string[0].toUpperCase() + string.slice(1)
+}
