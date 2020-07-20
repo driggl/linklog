@@ -21,6 +21,9 @@
       }
     }
   ],
+  "github": {
+    "silent": true
+  },
   "env": {
     "API_URL": "@wdf-api-url"
   },
