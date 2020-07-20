@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ArticleSerializer < ApplicationSerializer
+  set_type :user
   attribute :title
   attribute :slug
   attribute :content
