@@ -10,5 +10,5 @@ class ArticleSerializer < ApplicationSerializer
     model.created_at&.strftime('%m-%d-%Y')
   end
 
-  belongs_to :user
+  belongs_to :user, serializer: AuthorSerializer
 end
