@@ -57,9 +57,6 @@ describe('LoginDialog', () => {
     const githubButton = wrapper.findComponent({ ref: 'github-button' })
     expect(githubButton.props()).toMatchObject({ color: 'secondary' })
     expect(githubButton.text()).toContain('Continue with github')
-
-    githubButton.trigger('click')
-    sinon.assert.calledWithExactly(LOGIN, 'github')
   })
 
   test('Contains input field for login', () => {

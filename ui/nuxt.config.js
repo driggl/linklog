@@ -82,11 +82,6 @@ export default {
           user: { url: '/me', method: 'get', propertyName: 'data' },
           logout: false
         }
-      },
-      github: {
-        client_id: process.env.GITHUB_ID || 'd1e3f0561f73a4d70cf0',
-        client_secret: process.env.GITHUB_SECRET || 'bec2bb82948ac03e5b4fad71f06f0ea165333ea9',
-        redirect_uri: process.env.GITHUB_REDIRECT_URI || 'http://localhost:3000/auth/callback'
       }
     }
   },
