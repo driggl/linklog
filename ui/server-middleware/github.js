@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 export default async function(req, res) {
-  const code = req._parsedUrl.query.split('&')[0].replace('code=', '')
+  const code = readCode(req)
   try {
     const response = await axios.post(`https://api.webdevflow.com/login`, { code })
     const token = response.data.token
@@ -19,4 +19,11 @@ export default async function(req, res) {
     }
     res.end(message)
   }
+}
+
+function readCode(req) {
+  return req._parsedUrl.query
+    .split('&')
+    .find((item) => item.startsWith('code='))
+    .replace('code=', '')
 }
