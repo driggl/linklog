@@ -1,4 +1,5 @@
 ![Ruby](https://github.com/driggl/linklog/workflows/Ruby/badge.svg?branch=master)
+![UI](https://github.com/driggl/linklog/workflows/UI/badge.svg?branch=master)
 
 # LinkLog
 
