@@ -3,7 +3,8 @@ const axios = require('axios')
 export default async function(req, res) {
   const code = readCode(req)
   try {
-    const response = await axios.post(`https://api.webdevflow.com/login`, { code })
+    const url = process.env.API_URL || 'https://api.webdevflow.com'
+    const response = await axios.post(`${url}/login`, { code })
     const token = response.data.token
     res.writeHead(308, {
       Location: '/?token=' + token,
