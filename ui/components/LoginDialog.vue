@@ -66,9 +66,9 @@ export default {
       this.SHOW_NOTIFICATON(`Logged in as ${this.form.login}`)
     },
     startGithubAuthentication() {
-      const clientId = process.env.GITHUB_ID || 'd1e3f0561f73a4d70cf0'
-      const clientSecret = process.env.GITHUB_SECRET || 'bec2bb82948ac03e5b4fad71f06f0ea165333ea9'
-      const redirectUri = process.env.GITHUB_REDIRECT_URI || 'http://localhost:3000/auth/callback'
+      const clientId = process.env.GITHUB_ID
+      const clientSecret = process.env.GITHUB_SECRET
+      const redirectUri = process.env.GITHUB_REDIRECT_URI
       window.location = `https://github.com/login/oauth/authorize?client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirectUri}`
     }
   }

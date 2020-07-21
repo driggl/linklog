@@ -1,4 +1,11 @@
 export default {
+  env: {
+    GITHUB_ID: process.env.GITHUB_ID || 'd1e3f0561f73a4d70cf0',
+    GITHUB_SECRET: process.env.GITHUB_SECRET || 'bec2bb82948ac03e5b4fad71f06f0ea165333ea9',
+    GITHUB_REDIRECT_URI: process.env.GITHUB_REDIRECT_URI || 'https://webdevflow.com/auth/callback',
+    FB_APP_ID: process.env.FB_APP_ID,
+    API_URL: process.env.API_URL || 'https://api.webdevflow.com'
+  },
   mode: 'universal',
   /*
    ** Headers of the page
