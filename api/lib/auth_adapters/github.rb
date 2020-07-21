@@ -50,6 +50,7 @@ module AuthAdapters
           u = User.new(user_data.merge(provider: 'github'))
           u.build_access_token
           u.save
+          u
         end
     end
 
