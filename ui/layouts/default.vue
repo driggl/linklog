@@ -16,6 +16,9 @@
         Logged in as: {{ user.login }}&nbsp;&nbsp;&nbsp;
         <v-btn ref="logout-button" @click.stop="$auth.logout()">Logout</v-btn>
       </div>
+      <v-col cols="1" class="d-xs-none d-sm-none d-md-flex">
+        <github-ribbon />
+      </v-col>
     </v-app-bar>
     <v-content>
       <v-layout column justify-center align-center class="primary white--text py-12 mb-8">
@@ -46,6 +49,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import GithubRibbon from '~/components/GithubRibbon'
 import LoginDialog from '~/components/LoginDialog'
 import RegistrationDialog from '~/components/RegistrationDialog'
 import CookiesBanner from '~/components/CookiesBanner'
@@ -53,6 +57,7 @@ import CookiesBanner from '~/components/CookiesBanner'
 export default {
   components: {
     LoginDialog,
+    GithubRibbon,
     RegistrationDialog,
     CookiesBanner
   },
