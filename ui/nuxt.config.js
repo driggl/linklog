@@ -39,7 +39,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/infiniteloading', ssr: false }, '~/plugins/disqus'],
+  plugins: [{ src: '~/plugins/infiniteloading', ssr: false }, '~/plugins/disqus', '~/plugins/optinmonster'],
   /*
    ** Nuxt.js dev-modules
    */
