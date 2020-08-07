@@ -9,13 +9,21 @@ export default async function(req, res) {
     title: item.attributes.title.replace('&', '$amp;'),
     excerpt: item.attributes.excerpt.replace('&', '$amp;'),
     content: marked(item.attributes.content),
-    slug: item.attributes.slug
+    slug: item.attributes.slug,
+    createdAt: item.attributes.createdAt
   }))
 
   let feed = '<?xml version="1.0" encoding="UTF-8" ?>\n'
   feed += '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
   feed += '<title>Recent News | WebDevFlow - A linklog for Modern Web Developers</title>'
   feed += '<description>Recent News | WebDevFlow - A linklog for Modern Web Developers</description>'
+  feed += '<category>Web development</category>'
+  feed += '<language>en-us</language>'
+  if (items.length > 0) {
+    feed += '<lastBuildDate>' + items[0].createdAt + '</lastBuildDate>'
+    feed += '<pubDate>' + items[0].createdAt + '</pubDate>'
+  }
+
   feed += '<link>https://webdevflow.com/rss.xml</link>'
   items.forEach((item) => {
     feed += '<item>'
