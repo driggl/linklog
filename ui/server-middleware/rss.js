@@ -25,7 +25,7 @@ export default async function(req, res) {
     feed += `<pubDate>${items[0].createdAt}</pubDate>`
   }
 
-  feed += '<link rel="self">https://webdevflow.com/rss.xml</link>'
+  feed += '<link>https://webdevflow.com/rss.xml</link>'
   items.forEach((item) => {
     feed += '<item>'
     feed += `<guid>https://webdevflow.com/articles/${item.id}</guid>`
