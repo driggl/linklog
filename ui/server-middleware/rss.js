@@ -4,7 +4,7 @@ const marked = require('marked')
 export default async function(req, res) {
   res.setHeader('Content-Type', 'text/xml; charset=UTF-8')
 
-  const { data } = await axios.get(`https://webdevflow.herokuapp.com/articles`)
+  const { data } = await axios.get(`https://api.webdevflow.com/articles`)
   const items = data.data.map((item) => ({
     title: item.attributes.title.replace('&', '$amp;'),
     excerpt: item.attributes.excerpt.replace('&', '$amp;'),
