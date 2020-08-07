@@ -3,7 +3,7 @@
 
 # LinkLog
 
-A linklog application for Modern Web developers to connect multple blogs together
+A linklog application for Modern Web developers to connect multiple blogs together
 
 The official version is available at: https://webdevflow.com
 
