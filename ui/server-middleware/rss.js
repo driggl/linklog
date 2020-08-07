@@ -25,13 +25,13 @@ export default async function(req, res) {
     feed += `<pubDate>${items[0].createdAt}</pubDate>`
   }
 
-  feed += '<link>https://webdevflow.com/rss.xml</link>'
+  feed += '<link rel="self">https://webdevflow.com/rss.xml</link>'
   items.forEach((item) => {
     feed += '<item>'
-    feed += `<guid>${item.id}</guid>`
+    feed += `<guid>https://webdevflow.com/articles/${item.id}</guid>`
     feed += `<title>${item.title}</title>`
     feed += `<description><![CDATA[${item.content}]]></description>`
-    feed += `<link rel="self">https://webdevflow.com/articles/${item.slug}</link>`
+    feed += `<link>https://webdevflow.com/articles/${item.slug}</link>`
     feed += '</item>'
   })
   feed += '</channel></rss>'
