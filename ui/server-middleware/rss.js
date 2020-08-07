@@ -6,11 +6,12 @@ export default async function(req, res) {
 
   const { data } = await axios.get(`https://api.webdevflow.com/articles`)
   const items = data.data.map((item) => ({
+    id: item.id,
     title: item.attributes.title.replace('&', '$amp;'),
     excerpt: item.attributes.excerpt.replace('&', '$amp;'),
     content: marked(item.attributes.content),
     slug: item.attributes.slug,
-    createdAt: item.attributes.createdAt
+    createdAt: (new Date(item.attributes.createdAt)).toUTCString()
   }))
 
   let feed = '<?xml version="1.0" encoding="UTF-8" ?>\n'
@@ -20,16 +21,17 @@ export default async function(req, res) {
   feed += '<category>Web development</category>'
   feed += '<language>en-us</language>'
   if (items.length > 0) {
-    feed += '<lastBuildDate>' + items[0].createdAt + '</lastBuildDate>'
-    feed += '<pubDate>' + items[0].createdAt + '</pubDate>'
+    feed += `<lastBuildDate>${items[0].createdAt}</lastBuildDate>`
+    feed += `<pubDate>${items[0].createdAt}</pubDate>`
   }
 
   feed += '<link>https://webdevflow.com/rss.xml</link>'
   items.forEach((item) => {
     feed += '<item>'
+    feed += `<guid>${item.id}</guid>`
     feed += `<title>${item.title}</title>`
     feed += `<description><![CDATA[${item.content}]]></description>`
-    feed += `<link>https://webdevflow.com/articles/${item.slug}</link>`
+    feed += `<link rel="self">https://webdevflow.com/articles/${item.slug}</link>`
     feed += '</item>'
   })
   feed += '</channel></rss>'
