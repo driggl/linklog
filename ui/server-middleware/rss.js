@@ -20,6 +20,7 @@ export default async function(req, res) {
   feed += '<description>Recent News | WebDevFlow - A linklog for Modern Web Developers</description>'
   feed += '<category>Web development</category>'
   feed += '<language>en-us</language>'
+  feed += '<atom:link href="https://webdevflow.com/rss.xml" rel="self" type="application/rss+xml" />'
   if (items.length > 0) {
     feed += `<lastBuildDate>${items[0].createdAt}</lastBuildDate>`
     feed += `<pubDate>${items[0].createdAt}</pubDate>`
