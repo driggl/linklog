@@ -5,6 +5,7 @@
         <v-toolbar-title class="primary--text" v-text="'WebDevFlow'" />
       </nuxt-link>
       <v-spacer />
+      <v-btn icon :alt="'RSS'" :to="'/rss.xml'"><v-icon>mdi-rss</v-icon></v-btn>
       <v-btn v-if="!$auth.loggedIn" ref="login-button" text color="primary" @click.stop="SHOW_LOGIN_FORM">
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
