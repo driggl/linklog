@@ -62,7 +62,7 @@ describe('RegistrationDialog', () => {
     mountComponent()
     expect(wrapper.findComponent({ ref: 'login-input' }).props()).toMatchObject({
       value: '',
-      label: 'Login'
+      label: 'Username'
     })
   })
 
