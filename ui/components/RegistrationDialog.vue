@@ -14,7 +14,7 @@
       label="Email"
       type="email"
     />
-    <v-text-field ref="login-input" v-model="form.login" :rules="[rules.required]" label="User name" />
+    <v-text-field ref="login-input" v-model="form.login" :rules="[rules.required]" label="Username" />
     <v-text-field
       ref="password-input"
       v-model="form.password"
