@@ -6,17 +6,22 @@
       </nuxt-link>
       <v-spacer />
       <v-btn icon :alt="'RSS'" :to="'/rss.xml'"><v-icon>mdi-rss</v-icon></v-btn>
-      <v-btn v-if="!$auth.loggedIn" ref="login-button" text color="primary" @click.stop="SHOW_LOGIN_FORM">
+      <div v-if="$auth.user" class="mr-5">
+        <v-avatar size="36px">
+          <img alt="Avatar" :src="$auth.user.attributes.avatarUrl || '/images/user-placeholder.jpg'" />
+        </v-avatar>
+        <strong class="hidden-xs-only" v-html="$auth.user.attributes.login"></strong>
+      </div>
+      <v-btn v-if="!$auth.loggedIn" ref="login-button" text color="primary" @click.stop="SHOW_LOGIN_FORM" class="mr-5">
         <v-icon>mdi-account</v-icon>
         &nbsp; Log in
       </v-btn>
       <v-btn v-if="!$auth.loggedIn" ref="register-button" color="primary" @click.stop="SHOW_REGISTRATION_FORM">
         Register
       </v-btn>
-      <div v-if="user">
-        Logged in as: {{ user.login }}&nbsp;&nbsp;&nbsp;
-        <v-btn ref="logout-button" @click.stop="$auth.logout()">Logout</v-btn>
-      </div>
+      <!-- Logged in as: {{ user.login }}&nbsp;&nbsp;&nbsp; -->
+      <v-btn v-if="$auth.loggedIn" ref="logout-button" @click.stop="$auth.logout()">Logout</v-btn>
+      <!-- </div> -->
       <v-col cols="1" class="d-xs-none d-sm-none d-md-flex">
         <github-ribbon />
       </v-col>
@@ -70,7 +75,12 @@ export default {
   computed: {
     ...mapGetters('notifications', ['notification']),
     user() {
-      return this.$auth.user && { id: this.$auth.user.id, ...this.$auth.user.attributes }
+      return (
+        this.$auth.user && {
+          id: this.$auth.user.id,
+          ...this.$auth.user.attributes
+        }
+      )
     }
   },
   async beforeCreate() {
