@@ -14,7 +14,7 @@ module AuthAdapters
 
     def call
       raise AuthenticationError if code.blank?
-      raise AuthenticationError if token.try(:error).present?
+      raise AuthenticationError if token.respond_to?(:error)
 
       prepare_user
     end
